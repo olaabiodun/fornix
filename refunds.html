@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fornix — Refunds</title>
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js" defer></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/transactions.css">
+<link rel="stylesheet" href="css/refunds.css">
+</head>
+<body>
+
+<!-- ALERT BANNER -->
+<div class="alert">
+  <div class="alert-dot"></div>
+  Setup 2FA to further protect your account
+  <a href="#">Setup 2FA <i data-lucide="arrow-right" style="width:12px;height:12px;"></i></a>
+</div>
+
+<!-- MOBILE OVERLAY -->
+<div class="mobile-overlay" id="mobileOverlay"></div>
+
+<!-- ROOT -->
+<div class="root">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sb-logo" onclick="window.location='index.html'">
+      <div class="logo-brand">
+        <div class="logo-name">Fornix</div>
+        <div class="logo-id">ID: 1838386</div>
+      </div>
+      <div class="logo-chevron"><i data-lucide="chevrons-up-down" style="width:15px;height:15px;"></i></div>
+      <div class="sb-close" id="mobileSidebarClose"><i data-lucide="x" style="width:14px;height:14px;"></i></div>
+    </div>
+
+    <nav class="sb-nav">
+      <div class="nav-label">Main</div>
+      <a href="index.html" style="text-decoration:none;color:inherit;display:block;"><div class="nav-item">
+        <i data-lucide="layout-dashboard" style="width:16px;height:16px;"></i> Command Center
+      </div></a>
+      <a href="transactions.html" style="text-decoration:none;color:inherit;display:block;"><div class="nav-item">
+        <i data-lucide="arrow-left-right" style="width:16px;height:16px;"></i> Transactions
+      </div></a>
+      <a href="customers.html" style="text-decoration:none;color:inherit;display:block;"><div class="nav-item">
+        <i data-lucide="users" style="width:16px;height:16px;"></i> Customers
+      </div></a>
+      <a href="refunds.html" style="text-decoration:none;color:inherit;display:block;"><div class="nav-item active">
+        <i data-lucide="rotate-ccw" style="width:16px;height:16px;"></i> Refunds
+        <span class="nav-badge">4</span>
+      </div></a>
+      <a href="disputes.html" style="text-decoration:none;color:inherit;display:block;"><div class="nav-item">
+        <i data-lucide="flag" style="width:16px;height:16px;"></i> Disputes
+      </div></a>
+      <a href="payouts.html" style="text-decoration:none;color:inherit;display:block;"><div class="nav-item">
+        <i data-lucide="send" style="width:16px;height:16px;"></i> Payouts
+      </div></a>
+
+      <div class="nav-divider"></div>
+      <div class="nav-label">Settings</div>
+
+      <a href="audit-logs.html" style="text-decoration:none;color:inherit;display:block;"><div class="nav-item">
+        <i data-lucide="scroll-text" style="width:16px;height:16px;"></i> Audit Logs
+      </div></a>
+      <a href="developers.html" style="text-decoration:none;color:inherit;display:block;"><div class="nav-item">
+        <i data-lucide="code-2" style="width:16px;height:16px;"></i> Developers
+      </div></a>
+      <a href="settings.html" style="text-decoration:none;color:inherit;display:block;"><div class="nav-item">
+        <i data-lucide="settings" style="width:16px;height:16px;"></i> Settings
+      </div></a>
+    </nav>
+
+    <div class="sb-footer">
+      <div class="user-item">
+        <div class="user-av"><img src="https://i.pravatar.cc/64?u=abiodun" alt="Abiodun" loading="lazy"></div>
+        <div class="user-name">Abiodun</div>
+        <span class="user-arrow"><i data-lucide="chevron-right" style="width:14px;height:14px;"></i></span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <!-- TOPBAR -->
+    <div class="topbar">
+      <div class="topbar-left">
+        <div class="tb-btn mobile-menu-btn" id="mobileMenuBtn"><i data-lucide="menu" style="width:15px;height:15px;"></i></div>
+        <div class="tb-btn" id="sidebarToggle"><i data-lucide="panel-left" style="width:15px;height:15px;"></i></div>
+        <div class="search-bar">
+          <i data-lucide="search" style="width:13px;height:13px;"></i>
+          <input type="text" id="refundSearch" placeholder="Search refunds…">
+          <span style="font-size:10.5px;color:var(--t3);background:var(--bg-hover);border:1px solid var(--border);border-radius:4px;padding:1px 5px;font-family:'Inter',sans-serif;">⌘K</span>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <div class="live-wrap">
+          <div class="live-dot"></div>
+          <span class="live-text">Live mode</span>
+          <div class="toggle"></div>
+        </div>
+        <div class="tb-btn notif-btn">
+          <i data-lucide="bell" style="width:15px;height:15px;"></i>
+          <div class="notif-dot"></div>
+        </div>
+        <div class="tb-btn"><i data-lucide="settings-2" style="width:15px;height:15px;"></i></div>
+      </div>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="content">
+      <div class="scroll-area">
+
+        <!-- SECTION HEADER -->
+        <div class="section-head" style="margin-bottom:14px;">
+          <div>
+            <div class="section-title">Refunds</div>
+            <div class="section-sub">Manage refund requests across all statuses</div>
+          </div>
+        </div>
+
+        <!-- STATS -->
+        <div class="ref-stats">
+          <div class="ref-stat-card pending">
+            <div class="ref-stat-icon"><i data-lucide="clock" style="width:16px;height:16px;"></i></div>
+            <div class="ref-stat-info">
+              <div class="ref-stat-val" id="statPending">0</div>
+              <div class="ref-stat-lbl">Pending</div>
+            </div>
+          </div>
+          <div class="ref-stat-card approved">
+            <div class="ref-stat-icon"><i data-lucide="check-circle" style="width:16px;height:16px;"></i></div>
+            <div class="ref-stat-info">
+              <div class="ref-stat-val" id="statApproved">0</div>
+              <div class="ref-stat-lbl">Approved</div>
+            </div>
+          </div>
+          <div class="ref-stat-card declined">
+            <div class="ref-stat-icon"><i data-lucide="x-circle" style="width:16px;height:16px;"></i></div>
+            <div class="ref-stat-info">
+              <div class="ref-stat-val" id="statDeclined">0</div>
+              <div class="ref-stat-lbl">Declined</div>
+            </div>
+          </div>
+          <div class="ref-stat-card total">
+            <div class="ref-stat-icon"><i data-lucide="rotate-ccw" style="width:16px;height:16px;"></i></div>
+            <div class="ref-stat-info">
+              <div class="ref-stat-val" id="statTotal">0</div>
+              <div class="ref-stat-lbl">Total Refunded</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- KANBAN BOARD -->
+        <div class="kanban">
+          <div class="kanban-col" data-status="pending">
+            <div class="kanban-col-head pending">
+              <i data-lucide="clock" style="width:14px;height:14px;"></i>
+              Pending
+              <span class="kanban-count" id="countPending">0</span>
+            </div>
+            <div class="kanban-list" id="kanbanPending"></div>
+          </div>
+          <div class="kanban-col" data-status="approved">
+            <div class="kanban-col-head approved">
+              <i data-lucide="check-circle" style="width:14px;height:14px;"></i>
+              Approved
+              <span class="kanban-count" id="countApproved">0</span>
+            </div>
+            <div class="kanban-list" id="kanbanApproved"></div>
+          </div>
+          <div class="kanban-col" data-status="declined">
+            <div class="kanban-col-head declined">
+              <i data-lucide="x-circle" style="width:14px;height:14px;"></i>
+              Declined
+              <span class="kanban-count" id="countDeclined">0</span>
+            </div>
+            <div class="kanban-list" id="kanbanDeclined"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+</div>
+
+<!-- FLOATING RIGHT PANEL TOGGLE (mobile) -->
+<button class="rp-toggle" id="rpToggle" aria-label="Toggle AI Assistant">
+  <i data-lucide="sparkles" style="width:20px;height:20px;"></i>
+</button>
+
+<!-- ── REFUND DETAIL MODAL ── -->
+<div class="modal-overlay" id="refundModalOverlay">
+  <div class="modal">
+    <div class="modal-head">
+      <div class="modal-head-left">
+        <div class="modal-status-icon pending" id="modalStatusIcon">
+          <i data-lucide="clock" style="width:18px;height:18px;"></i>
+        </div>
+        <div>
+          <div class="modal-title" id="modalTitle">Refund Pending</div>
+          <div class="modal-sub" id="modalRef">REF_a12b34</div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:6px;">
+        <span class="modal-badge pending" id="modalBadge"><span class="bdot"></span>Pending</span>
+        <button class="modal-close" id="refundModalClose"><i data-lucide="x" style="width:14px;height:14px;"></i></button>
+      </div>
+    </div>
+
+    <div class="modal-body">
+      <div class="modal-amount-wrap">
+        <div class="modal-amount-label">Refund Amount</div>
+        <div class="modal-amount" id="modalAmount" style="color:var(--red);">- ₦800</div>
+        <div class="modal-amount-fee" id="modalFee">Fee waived: <span>₦0</span> &middot; Refund total: <span>₦800</span></div>
+      </div>
+
+      <div class="refund-summary">
+        <div class="refund-summary-item">
+          <div class="refund-summary-lbl">Reason</div>
+          <div class="refund-summary-val" id="refSummaryReason" style="font-size:13px;font-family:'Plus Jakarta Sans',sans-serif;">Duplicate charge</div>
+        </div>
+        <div class="refund-summary-item">
+          <div class="refund-summary-lbl">Payment Method</div>
+          <div class="refund-summary-val" id="refSummaryMethod">USSD</div>
+        </div>
+        <div class="refund-summary-item">
+          <div class="refund-summary-lbl">Requested</div>
+          <div class="refund-summary-val" id="refSummaryRequested" style="font-size:12px;font-family:'Plus Jakarta Sans',sans-serif;">—</div>
+        </div>
+        <div class="refund-summary-item">
+          <div class="refund-summary-lbl">Resolved</div>
+          <div class="refund-summary-val" id="refSummaryResolved" style="font-size:12px;font-family:'Plus Jakarta Sans',sans-serif;">—</div>
+        </div>
+      </div>
+
+      <div class="modal-customer">
+        <div class="modal-cust-av" id="modalCustAv"><img src="https://i.pravatar.cc/60?u=bolu@email.com" alt="B" loading="lazy"></div>
+        <div class="modal-cust-info">
+          <div class="modal-cust-name" id="modalCustName">Bolu Adeyemi</div>
+          <div class="modal-cust-email" id="modalCustEmail">bolu@email.com</div>
+        </div>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-title">Refund Timeline</div>
+        <div class="timeline-list" id="refundTimeline"></div>
+      </div>
+
+      <div class="modal-actions">
+        <button class="modal-btn primary" id="modalApproveBtn"><i data-lucide="check" style="width:13px;height:13px;"></i> Approve Refund</button>
+        <button class="modal-btn" id="modalDeclineBtn"><i data-lucide="x" style="width:13px;height:13px;"></i> Decline</button>
+        <button class="modal-btn"><i data-lucide="message-square" style="width:13px;height:13px;"></i> Contact Customer</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="js/refunds.js"></script>
+<script src="js/mobile.js"></script>
+</body>
+</html>

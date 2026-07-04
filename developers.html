@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fornix — Developers</title>
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js" defer></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/developers.css">
+</head>
+<body>
+
+<div class="alert"><div class="alert-dot"></div>Setup 2FA to further protect your account<a href="#">Setup 2FA <i data-lucide="arrow-right" style="width:12px;height:12px;"></i></a></div>
+<div class="mobile-overlay" id="mobileOverlay"></div>
+
+<div class="root">
+  <aside class="sidebar" id="sidebar">
+    <div class="sb-logo" onclick="window.location='index.html'">
+      <div class="logo-brand"><div class="logo-name">Fornix</div><div class="logo-id">ID: 1838386</div></div>
+      <div class="logo-chevron"><i data-lucide="chevrons-up-down" style="width:15px;height:15px;"></i></div>
+      <div class="sb-close" id="mobileSidebarClose"><i data-lucide="x" style="width:14px;height:14px;"></i></div>
+    </div>
+    <nav class="sb-nav">
+      <div class="nav-label">Main</div>
+      <a href="index.html" style="text-decoration:none;color:inherit;display:block;"><div class="nav-item"><i data-lucide="layout-dashboard" style="width:16px;height:16px;"></i> Command Center</div></a>
+      <a href="transactions.html" style="text-decoration:none;color:inherit;display:block;"><div class="nav-item"><i data-lucide="arrow-left-right" style="width:16px;height:16px;"></i> Transactions</div></a>
+      <a href="customers.html" style="text-decoration:none;color:inherit;display:block;"><div class="nav-item"><i data-lucide="users" style="width:16px;height:16px;"></i> Customers</div></a>
+      <a href="refunds.html" style="text-decoration:none;color:inherit;display:block;"><div class="nav-item"><i data-lucide="rotate-ccw" style="width:16px;height:16px;"></i> Refunds</div></a>
+      <a href="disputes.html" style="text-decoration:none;color:inherit;display:block;"><div class="nav-item"><i data-lucide="flag" style="width:16px;height:16px;"></i> Disputes</div></a>
+      <a href="payouts.html" style="text-decoration:none;color:inherit;display:block;"><div class="nav-item"><i data-lucide="send" style="width:16px;height:16px;"></i> Payouts</div></a>
+      <div class="nav-divider"></div>
+      <div class="nav-label">Settings</div>
+      <a href="audit-logs.html" style="text-decoration:none;color:inherit;display:block;"><div class="nav-item"><i data-lucide="scroll-text" style="width:16px;height:16px;"></i> Audit Logs</div></a>
+      <a href="developers.html" style="text-decoration:none;color:inherit;display:block;"><div class="nav-item active"><i data-lucide="code-2" style="width:16px;height:16px;"></i> Developers</div></a>
+      <a href="settings.html" style="text-decoration:none;color:inherit;display:block;"><div class="nav-item"><i data-lucide="settings" style="width:16px;height:16px;"></i> Settings</div></a>
+    </nav>
+    <div class="sb-footer">
+      <div class="user-item">
+        <div class="user-av"><img src="https://i.pravatar.cc/64?u=abiodun" alt="Abiodun" loading="lazy"></div>
+        <div class="user-name">Abiodun</div>
+        <span class="user-arrow"><i data-lucide="chevron-right" style="width:14px;height:14px;"></i></span>
+      </div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="topbar">
+      <div class="topbar-left">
+        <div class="tb-btn mobile-menu-btn" id="mobileMenuBtn"><i data-lucide="menu" style="width:15px;height:15px;"></i></div>
+        <div class="tb-btn" id="sidebarToggle"><i data-lucide="panel-left" style="width:15px;height:15px;"></i></div>
+        <div class="section-title" style="font-size:15px;">Developer Portal</div>
+      </div>
+      <div class="topbar-right">
+        <div style="display:flex;align-items:center;gap:6px;padding:6px 10px;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;">
+          <div class="al-live-dot" style="width:6px;height:6px;"></div>
+          <span style="font-size:11px;color:var(--green);font-weight:600;">All Systems Operational</span>
+        </div>
+        <div class="tb-btn notif-btn"><i data-lucide="bell" style="width:15px;height:15px;"></i><div class="notif-dot"></div></div>
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="scroll-area">
+
+        <!-- HERO HEADER -->
+        <div class="dev-hero">
+          <div class="dev-hero-left">
+            <div class="dev-hero-icon"><i data-lucide="code-2" style="width:22px;height:22px;"></i></div>
+            <div>
+              <div class="dev-hero-title">API Reference</div>
+              <div class="dev-hero-sub">Build with Fornix — integrate payments, refunds, and disputes in minutes.</div>
+            </div>
+          </div>
+          <div class="dev-hero-right">
+            <div class="dev-hero-stat"><span class="dev-hero-stat-val" id="devUptime">99.97</span><span class="dev-hero-stat-unit">%</span><span class="dev-hero-stat-lbl">uptime</span></div>
+            <div class="dev-hero-divider"></div>
+            <div class="dev-hero-stat"><span class="dev-hero-stat-val" id="devAvgLatency">42</span><span class="dev-hero-stat-unit">ms</span><span class="dev-hero-stat-lbl">avg latency</span></div>
+            <div class="dev-hero-divider"></div>
+            <div class="dev-hero-stat"><span class="dev-hero-stat-val">14.2k</span><span class="dev-hero-stat-unit">/d</span><span class="dev-hero-stat-lbl">requests</span></div>
+          </div>
+        </div>
+
+        <!-- USAGE MINI-CHART -->
+        <div class="dev-chart-card">
+          <div class="dev-chart-head">
+            <div class="dev-chart-title">API Usage <span style="font-size:11px;color:var(--t2);font-weight:400;">— Last 7 days</span></div>
+            <div class="dev-chart-legend">
+              <span class="legend-item"><span class="legend-dot" style="background:var(--green);"></span> Success</span>
+              <span class="legend-item"><span class="legend-dot" style="background:var(--red);"></span> Errors</span>
+            </div>
+          </div>
+          <div class="dev-chart-wrap"><canvas id="apiUsageChart"></canvas></div>
+        </div>
+
+        <!-- SPLIT LAYOUT -->
+        <div class="dev-split">
+          <div class="dev-split-main">
+
+            <!-- TABS -->
+            <div class="dev-nav" id="devNav">
+              <button class="dev-nav-item active" data-tab="keys"><i data-lucide="key-round" style="width:14px;height:14px;"></i> API Keys</button>
+              <button class="dev-nav-item" data-tab="webhooks"><i data-lucide="webhook" style="width:14px;height:14px;"></i> Webhooks</button>
+              <button class="dev-nav-item" data-tab="docs"><i data-lucide="book-open" style="width:14px;height:14px;"></i> Quick Start</button>
+            </div>
+
+            <!-- API KEYS TAB -->
+            <div class="dev-tab active" id="tabKeys">
+              <div class="dev-section-head">
+                <div>
+                  <div class="dev-section-title">API Keys</div>
+                  <div class="dev-section-sub">Keys used to authenticate API requests. Treat them like passwords.</div>
+                </div>
+                <button class="dev-gen-btn" id="genKeyBtn"><i data-lucide="plus" style="width:14px;height:14px;"></i> Generate Key</button>
+              </div>
+              <div class="dev-keys" id="apiKeyList"></div>
+
+              <!-- Security Note -->
+              <div class="dev-note">
+                <i data-lucide="shield" style="width:14px;height:14px;color:var(--amber);"></i>
+                <span>Never share your API keys publicly. If compromised, revoke and generate a new one immediately.</span>
+              </div>
+            </div>
+
+            <!-- WEBHOOKS TAB -->
+            <div class="dev-tab" id="tabWebhooks">
+              <div class="dev-section-head">
+                <div>
+                  <div class="dev-section-title">Webhooks</div>
+                  <div class="dev-section-sub">Receive real-time notifications when events happen in your account.</div>
+                </div>
+                <button class="dev-gen-btn" id="addWebhookBtn"><i data-lucide="plus" style="width:14px;height:14px;"></i> Add Endpoint</button>
+              </div>
+              <div class="dev-wh-list" id="webhookList"></div>
+            </div>
+
+            <!-- QUICK START TAB -->
+            <div class="dev-tab" id="tabDocs">
+              <div class="dev-section-head">
+                <div>
+                  <div class="dev-section-title">Quick Start</div>
+                  <div class="dev-section-sub">Integrate in minutes with our simple REST API.</div>
+                </div>
+              </div>
+
+              <div class="dev-lang-tabs" id="langTabs">
+                <button class="dev-lang-tab active" data-lang="curl">cURL</button>
+                <button class="dev-lang-tab" data-lang="python">Python</button>
+                <button class="dev-lang-tab" data-lang="node">Node.js</button>
+                <button class="dev-lang-tab" data-lang="js">JavaScript</button>
+              </div>
+
+              <div class="dev-docs-card">
+                <div class="dev-docs-head">
+                  <i data-lucide="terminal" style="width:16px;height:16px;color:var(--green);"></i>
+                  <span>Create a Payment</span>
+                  <button class="dev-copy-btn" id="copyExampleBtn"><i data-lucide="copy" style="width:12px;height:12px;"></i> Copy</button>
+                </div>
+                <pre class="dev-code" id="codeExample"><code class="lang-curl">curl -X POST https://api.ludofusion.com/v1/charges \
+  -H "Authorization: Bearer lf_live_..." \
+  -H "Content-Type: application/json" \
+  -d '{
+    "amount": 3200,
+    "currency": "NGN",
+    "source": "card",
+    "description": "Test payment"
+  }'</code></pre>
+              </div>
+
+              <div class="dev-docs-card">
+                <div class="dev-docs-head">
+                  <i data-lucide="file-text" style="width:16px;height:16px;color:var(--blue);"></i>
+                  <span>Response</span>
+                  <button class="dev-copy-btn"><i data-lucide="copy" style="width:12px;height:12px;"></i> Copy</button>
+                </div>
+                <pre class="dev-code"><code>{
+  "status": "success",
+  "data": {
+    "id": "ch_a1b2c3d4e5",
+    "amount": 3200,
+    "currency": "NGN",
+    "status": "completed",
+    "created": "2026-07-03T14:30:00Z"
+  }
+}</code></pre>
+              </div>
+
+              <div class="dev-docs-grid">
+                <div class="dev-docs-card">
+                  <div class="dev-docs-head">
+                    <i data-lucide="book-open" style="width:16px;height:16px;color:var(--amber);"></i>
+                    <span>Rate Limits</span>
+                  </div>
+                  <div class="dev-docs-body">
+                    <div class="dev-docs-row"><span>Standard Tier</span><span><strong>100 req/min</strong></span></div>
+                    <div class="dev-docs-row"><span>Enterprise Tier</span><span><strong>1,000 req/min</strong></span></div>
+                    <div class="dev-docs-row"><span>Burst</span><span><strong>50 req/s</strong></span></div>
+                    <div class="dev-docs-row"><span>Concurrent</span><span><strong>25 per key</strong></span></div>
+                  </div>
+                </div>
+                <div class="dev-docs-card">
+                  <div class="dev-docs-head">
+                    <i data-lucide="package" style="width:16px;height:16px;color:var(--purple);"></i>
+                    <span>SDKs</span>
+                  </div>
+                  <div class="dev-docs-body">
+                    <div class="dev-docs-row"><span><i data-lucide="globe" style="width:12px;height:12px;"></i> Python</span><span><strong>pip install ludo</strong></span></div>
+                    <div class="dev-docs-row"><span><i data-lucide="globe" style="width:12px;height:12px;"></i> Node.js</span><span><strong>npm install ludo-api</strong></span></div>
+                    <div class="dev-docs-row"><span><i data-lucide="globe" style="width:12px;height:12px;"></i> PHP</span><span><strong>composer require ludo/api</strong></span></div>
+                    <div class="dev-docs-row"><span><i data-lucide="globe" style="width:12px;height:12px;"></i> Go</span><span><strong>go get ludo.dev/api</strong></span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- SIDEBAR: RECENT ACTIVITY -->
+          <div class="dev-split-side">
+            <div class="dev-activity-card">
+              <div class="dev-activity-head">
+                <i data-lucide="activity" style="width:14px;height:14px;color:var(--green);"></i>
+                <span>Recent API Activity</span>
+              </div>
+              <div class="dev-activity-list" id="devActivityList"></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+</div>
+
+<button class="rp-toggle" id="rpToggle"><i data-lucide="sparkles" style="width:20px;height:20px;"></i></button>
+
+<!-- ── GENERATE KEY MODAL ── -->
+<div class="modal-overlay" id="genKeyOverlay">
+  <div class="modal form-modal">
+    <div class="modal-head">
+      <div class="modal-head-left">
+        <div class="modal-status-icon green"><i data-lucide="key-round" style="width:18px;height:18px;"></i></div>
+        <div>
+          <div class="modal-title">Generate API Key</div>
+          <div class="modal-sub">Create a new key for programmatic access.</div>
+        </div>
+      </div>
+      <button class="modal-close" id="genKeyClose"><i data-lucide="x" style="width:14px;height:14px;"></i></button>
+    </div>
+    <div class="form-body">
+      <div class="form-group">
+        <label class="form-label">Key Name</label>
+        <input class="form-input" id="newKeyName" type="text" placeholder="e.g. Production, Staging, iOS App">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Environment</label>
+        <select class="form-select" id="newKeyEnv">
+          <option value="live">Live</option>
+          <option value="test">Test / Sandbox</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Permissions</label>
+        <div style="display:flex;flex-direction:column;gap:6px;">
+          <label style="display:flex;align-items:center;gap:8px;font-size:12px;cursor:pointer;"><input type="checkbox" checked disabled style="accent-color:var(--green);"> <span style="color:var(--t2);">Read <span style="color:var(--t3);font-size:10.5px;">(required)</span></span></label>
+          <label style="display:flex;align-items:center;gap:8px;font-size:12px;cursor:pointer;"><input type="checkbox" checked id="permWrite" style="accent-color:var(--green);"> <span style="color:var(--t2);">Write</span></label>
+          <label style="display:flex;align-items:center;gap:8px;font-size:12px;cursor:pointer;"><input type="checkbox" id="permAdmin" style="accent-color:var(--green);"> <span style="color:var(--t2);">Admin</span></label>
+        </div>
+      </div>
+      <div class="form-actions">
+        <button class="form-btn" id="genKeyCancel">Cancel</button>
+        <button class="form-btn primary" id="genKeySave"><i data-lucide="check" style="width:13px;height:13px;"></i> Generate Key</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── KEY GENERATED SUCCESS TOAST ── -->
+<div class="dev-toast" id="keyToast">
+  <i data-lucide="check-circle" style="width:16px;height:16px;color:var(--green);"></i>
+  <div>
+    <div class="dev-toast-text" style="font-weight:600;font-size:13px;">Key created</div>
+    <div style="font-size:11px;color:var(--t2);">Copy it now — you won't see it again.</div>
+  </div>
+  <button class="dev-toast-close" id="toastClose"><i data-lucide="x" style="width:12px;height:12px;"></i></button>
+</div>
+
+<script src="js/developers.js"></script>
+<script src="js/mobile.js"></script>
+</body>
+</html>

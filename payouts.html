@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fornix — Payouts</title>
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js" defer></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/transactions.css">
+<link rel="stylesheet" href="css/payouts.css">
+</head>
+<body>
+
+<div class="alert">
+  <div class="alert-dot"></div>
+  Setup 2FA to further protect your account
+  <a href="#">Setup 2FA <i data-lucide="arrow-right" style="width:12px;height:12px;"></i></a>
+</div>
+
+<div class="mobile-overlay" id="mobileOverlay"></div>
+
+<div class="root">
+  <aside class="sidebar" id="sidebar">
+    <div class="sb-logo" onclick="window.location='index.html'">
+      <div class="logo-brand"><div class="logo-name">Fornix</div><div class="logo-id">ID: 1838386</div></div>
+      <div class="logo-chevron"><i data-lucide="chevrons-up-down" style="width:15px;height:15px;"></i></div>
+      <div class="sb-close" id="mobileSidebarClose"><i data-lucide="x" style="width:14px;height:14px;"></i></div>
+    </div>
+    <nav class="sb-nav">
+      <div class="nav-label">Main</div>
+      <a href="index.html" style="text-decoration:none;color:inherit;display:block;"><div class="nav-item"><i data-lucide="layout-dashboard" style="width:16px;height:16px;"></i> Command Center</div></a>
+      <a href="transactions.html" style="text-decoration:none;color:inherit;display:block;"><div class="nav-item"><i data-lucide="arrow-left-right" style="width:16px;height:16px;"></i> Transactions</div></a>
+      <a href="customers.html" style="text-decoration:none;color:inherit;display:block;"><div class="nav-item"><i data-lucide="users" style="width:16px;height:16px;"></i> Customers</div></a>
+      <a href="refunds.html" style="text-decoration:none;color:inherit;display:block;"><div class="nav-item"><i data-lucide="rotate-ccw" style="width:16px;height:16px;"></i> Refunds</div></a>
+      <a href="disputes.html" style="text-decoration:none;color:inherit;display:block;"><div class="nav-item"><i data-lucide="flag" style="width:16px;height:16px;"></i> Disputes</div></a>
+      <a href="payouts.html" style="text-decoration:none;color:inherit;display:block;"><div class="nav-item active"><i data-lucide="send" style="width:16px;height:16px;"></i> Payouts</div></a>
+      <div class="nav-divider"></div>
+      <div class="nav-label">Settings</div>
+      <a href="audit-logs.html" style="text-decoration:none;color:inherit;display:block;"><div class="nav-item"><i data-lucide="scroll-text" style="width:16px;height:16px;"></i> Audit Logs</div></a>
+      <a href="developers.html" style="text-decoration:none;color:inherit;display:block;"><div class="nav-item"><i data-lucide="code-2" style="width:16px;height:16px;"></i> Developers</div></a>
+      <a href="settings.html" style="text-decoration:none;color:inherit;display:block;"><div class="nav-item"><i data-lucide="settings" style="width:16px;height:16px;"></i> Settings</div></a>
+    </nav>
+    <div class="sb-footer">
+      <div class="user-item">
+        <div class="user-av"><img src="https://i.pravatar.cc/64?u=abiodun" alt="Abiodun" loading="lazy"></div>
+        <div class="user-name">Abiodun</div>
+        <span class="user-arrow"><i data-lucide="chevron-right" style="width:14px;height:14px;"></i></span>
+      </div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="topbar">
+      <div class="topbar-left">
+        <div class="tb-btn mobile-menu-btn" id="mobileMenuBtn"><i data-lucide="menu" style="width:15px;height:15px;"></i></div>
+        <div class="tb-btn" id="sidebarToggle"><i data-lucide="panel-left" style="width:15px;height:15px;"></i></div>
+        <div class="search-bar" style="width:200px;"><i data-lucide="search" style="width:13px;height:13px;"></i><input type="text" id="payoutSearch" placeholder="Search payouts…"></div>
+      </div>
+      <div class="topbar-right">
+        <div class="live-wrap"><div class="live-dot"></div><span class="live-text">Live mode</span><div class="toggle"></div></div>
+        <div class="tb-btn notif-btn"><i data-lucide="bell" style="width:15px;height:15px;"></i><div class="notif-dot"></div></div>
+        <div class="tb-btn"><i data-lucide="download" style="width:15px;height:15px;"></i></div>
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="scroll-area">
+        <div class="section-head" style="margin-bottom:14px;">
+          <div>
+            <div class="section-title">Payouts</div>
+            <div class="section-sub">Schedule and manage merchant payouts</div>
+          </div>
+          <button class="filter-btn primary" style="gap:6px;"><i data-lucide="plus" style="width:13px;height:13px;"></i> New Payout</button>
+        </div>
+
+        <!-- STATS -->
+        <div class="po-stats">
+          <div class="po-stat">
+            <div class="po-stat-icon green"><i data-lucide="wallet" style="width:16px;height:16px;"></i></div>
+            <div class="po-stat-info"><div class="po-stat-val" id="statBalance">₦0</div><div class="po-stat-lbl">Available Balance</div></div>
+          </div>
+          <div class="po-stat">
+            <div class="po-stat-icon amber"><i data-lucide="clock" style="width:16px;height:16px;"></i></div>
+            <div class="po-stat-info"><div class="po-stat-val" id="statPending">₦0</div><div class="po-stat-lbl">Pending Payouts</div></div>
+          </div>
+          <div class="po-stat">
+            <div class="po-stat-icon blue"><i data-lucide="check-circle" style="width:16px;height:16px;"></i></div>
+            <div class="po-stat-info"><div class="po-stat-val" id="statCompleted">₦0</div><div class="po-stat-lbl">Completed This Month</div></div>
+          </div>
+          <div class="po-stat">
+            <div class="po-stat-icon purple"><i data-lucide="calendar" style="width:16px;height:16px;"></i></div>
+            <div class="po-stat-info"><div class="po-stat-val" id="statUpcoming">0</div><div class="po-stat-lbl">Upcoming Schedules</div></div>
+          </div>
+        </div>
+
+        <!-- UPCOMING SCHEDULE -->
+        <div class="po-schedule-wrap">
+          <div class="po-schedule-header">
+            <div class="po-schedule-title">Upcoming Schedule</div>
+            <button class="filter-btn" style="gap:4px;padding:5px 10px;"><i data-lucide="calendar" style="width:12px;height:12px;"></i> Full Calendar</button>
+          </div>
+          <div class="po-schedule" id="payoutSchedule"></div>
+        </div>
+
+        <!-- PAYOUT BATCH TABLE -->
+        <div class="txn-card" style="padding-bottom:0;">
+          <div class="txn-head">
+            <div class="txn-title">Payout History</div>
+            <div style="display:flex;gap:8px;">
+              <select class="filter-select" id="poStatusFilter" style="font-size:11px;">
+                <option value="all">All Status</option>
+                <option value="completed">Completed</option>
+                <option value="pending">Pending</option>
+                <option value="processing">Processing</option>
+              </select>
+            </div>
+          </div>
+          <div class="txn-scroll">
+          <table class="txn-table po-table">
+            <thead>
+              <tr>
+                <th>Batch</th>
+                <th>Merchants</th>
+                <th>Total</th>
+                <th>Method</th>
+                <th>Status</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody id="payoutTableBody"></tbody>
+          </table>
+          </div>
+          <div class="pagination" id="payoutPagination">
+            <div class="pagination-info">Showing 0–0 of 0</div>
+            <div class="pagination-actions"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+</div>
+
+<button class="rp-toggle" id="rpToggle"><i data-lucide="sparkles" style="width:20px;height:20px;"></i></button>
+
+<!-- PAYOUT DETAIL MODAL -->
+<div class="modal-overlay" id="poModalOverlay">
+  <div class="modal po-modal">
+    <div class="modal-head">
+      <div class="modal-head-left">
+        <div class="modal-status-icon success" id="poModalIcon"><i data-lucide="check-circle" style="width:18px;height:18px;"></i></div>
+        <div>
+          <div class="modal-title" id="poModalTitle">Payout Batch</div>
+          <div class="modal-sub" id="poModalRef">PO_batch_001</div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:6px;">
+        <span class="modal-badge success" id="poModalBadge"><span class="bdot"></span>Completed</span>
+        <button class="modal-close" id="poModalClose"><i data-lucide="x" style="width:14px;height:14px;"></i></button>
+      </div>
+    </div>
+    <div class="modal-body">
+      <div class="po-modal-amt">
+        <div class="po-modal-amt-label">Batch Total</div>
+        <div class="po-modal-amt-val" id="poModalAmount">₦0</div>
+      </div>
+      <div class="detail-grid">
+        <div class="detail-item"><div class="detail-lbl">Merchants Paid</div><div class="detail-val" id="poModalCount">0</div></div>
+        <div class="detail-item"><div class="detail-lbl">Payment Method</div><div class="detail-val" id="poModalMethod">—</div></div>
+        <div class="detail-item"><div class="detail-lbl">Processed Date</div><div class="detail-val" id="poModalDate">—</div></div>
+        <div class="detail-item"><div class="detail-lbl">Processing Fee</div><div class="detail-val mono" id="poModalFee">₦0</div></div>
+      </div>
+      <div class="timeline">
+        <div class="timeline-title">Merchant List</div>
+        <div class="po-modal-list" id="poModalMerchants"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="js/payouts.js"></script>
+<script src="js/mobile.js"></script>
+</body>
+</html>

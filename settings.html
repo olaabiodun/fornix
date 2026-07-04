@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fornix — Settings</title>
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js" defer></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/settings.css">
+</head>
+<body>
+
+<div class="alert"><div class="alert-dot"></div>Setup 2FA to further protect your account<a href="#">Setup 2FA <i data-lucide="arrow-right" style="width:12px;height:12px;"></i></a></div>
+<div class="mobile-overlay" id="mobileOverlay"></div>
+
+<div class="root">
+  <aside class="sidebar" id="sidebar">
+    <div class="sb-logo" onclick="window.location='index.html'">
+      <div class="logo-brand"><div class="logo-name">Fornix</div><div class="logo-id">ID: 1838386</div></div>
+      <div class="logo-chevron"><i data-lucide="chevrons-up-down" style="width:15px;height:15px;"></i></div>
+      <div class="sb-close" id="mobileSidebarClose"><i data-lucide="x" style="width:14px;height:14px;"></i></div>
+    </div>
+    <nav class="sb-nav">
+      <div class="nav-label">Main</div>
+      <a href="index.html" style="text-decoration:none;color:inherit;display:block;"><div class="nav-item"><i data-lucide="layout-dashboard" style="width:16px;height:16px;"></i> Command Center</div></a>
+      <a href="transactions.html" style="text-decoration:none;color:inherit;display:block;"><div class="nav-item"><i data-lucide="arrow-left-right" style="width:16px;height:16px;"></i> Transactions</div></a>
+      <a href="customers.html" style="text-decoration:none;color:inherit;display:block;"><div class="nav-item"><i data-lucide="users" style="width:16px;height:16px;"></i> Customers</div></a>
+      <a href="refunds.html" style="text-decoration:none;color:inherit;display:block;"><div class="nav-item"><i data-lucide="rotate-ccw" style="width:16px;height:16px;"></i> Refunds</div></a>
+      <a href="disputes.html" style="text-decoration:none;color:inherit;display:block;"><div class="nav-item"><i data-lucide="flag" style="width:16px;height:16px;"></i> Disputes</div></a>
+      <a href="payouts.html" style="text-decoration:none;color:inherit;display:block;"><div class="nav-item"><i data-lucide="send" style="width:16px;height:16px;"></i> Payouts</div></a>
+      <div class="nav-divider"></div>
+      <div class="nav-label">Settings</div>
+      <a href="audit-logs.html" style="text-decoration:none;color:inherit;display:block;"><div class="nav-item"><i data-lucide="scroll-text" style="width:16px;height:16px;"></i> Audit Logs</div></a>
+      <a href="developers.html" style="text-decoration:none;color:inherit;display:block;"><div class="nav-item"><i data-lucide="code-2" style="width:16px;height:16px;"></i> Developers</div></a>
+      <a href="settings.html" style="text-decoration:none;color:inherit;display:block;"><div class="nav-item active"><i data-lucide="settings" style="width:16px;height:16px;"></i> Settings</div></a>
+    </nav>
+    <div class="sb-footer">
+      <div class="user-item">
+        <div class="user-av"><img src="https://i.pravatar.cc/64?u=abiodun" alt="Abiodun" loading="lazy"></div>
+        <div class="user-name">Abiodun</div>
+        <span class="user-arrow"><i data-lucide="chevron-right" style="width:14px;height:14px;"></i></span>
+      </div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="topbar">
+      <div class="topbar-left">
+        <div class="tb-btn mobile-menu-btn" id="mobileMenuBtn"><i data-lucide="menu" style="width:15px;height:15px;"></i></div>
+        <div class="tb-btn" id="sidebarToggle"><i data-lucide="panel-left" style="width:15px;height:15px;"></i></div>
+        <div class="section-title" style="font-size:15px;">Settings</div>
+      </div>
+      <div class="topbar-right">
+        <div class="live-wrap"><div class="live-dot"></div><span class="live-text">Live mode</span><div class="toggle"></div></div>
+        <div class="tb-btn notif-btn"><i data-lucide="bell" style="width:15px;height:15px;"></i><div class="notif-dot"></div></div>
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="scroll-area">
+
+        <!-- MOBILE TAB DROPDOWN -->
+        <div class="set-mobile-select-wrap">
+          <select class="set-mobile-select" id="setMobileSelect">
+            <option value="profile">Profile</option>
+            <option value="security">Security</option>
+            <option value="notifications">Notifications</option>
+            <option value="billing">Billing</option>
+            <option value="team">Team</option>
+          </select>
+        </div>
+
+        <!-- SIDEBAR TABS (DESKTOP VERTICAL) -->
+        <div class="set-layout">
+          <div class="set-side" id="setNav">
+            <button class="set-nav-item active" data-tab="profile">
+              <i data-lucide="user" style="width:15px;height:15px;"></i>
+              <span>Profile</span>
+            </button>
+            <button class="set-nav-item" data-tab="security">
+              <i data-lucide="shield" style="width:15px;height:15px;"></i>
+              <span>Security</span>
+            </button>
+            <button class="set-nav-item" data-tab="notifications">
+              <i data-lucide="bell" style="width:15px;height:15px;"></i>
+              <span>Notifications</span>
+            </button>
+            <button class="set-nav-item" data-tab="billing">
+              <i data-lucide="credit-card" style="width:15px;height:15px;"></i>
+              <span>Billing</span>
+            </button>
+            <button class="set-nav-item" data-tab="team">
+              <i data-lucide="users" style="width:15px;height:15px;"></i>
+              <span>Team</span>
+            </button>
+          </div>
+
+          <div class="set-main">
+
+            <!-- PROFILE -->
+            <div class="set-tab active" id="tabProfile">
+              <div class="set-card">
+                <div class="set-card-head"><div class="set-card-title">Personal Information</div><div class="set-card-sub">Update your profile details.</div></div>
+                <div class="set-avatar-row">
+                  <div class="set-avatar"><img src="https://i.pravatar.cc/80?u=abiodun" alt="A" loading="lazy"></div>
+                  <div>
+                    <button class="set-btn">Change Photo</button>
+                    <div style="font-size:11px;color:var(--t3);margin-top:4px;">JPG or PNG. Max 2MB.</div>
+                  </div>
+                </div>
+                <div class="set-grid">
+                  <div class="set-field"><label class="set-label">Full Name</label><input class="set-input" value="Abiodun Ogunlesi"></div>
+                  <div class="set-field"><label class="set-label">Email</label><input class="set-input" value="abiodun@ludofusion.com"></div>
+                  <div class="set-field"><label class="set-label">Phone</label><input class="set-input" value="+234 802 555 0199"></div>
+                  <div class="set-field"><label class="set-label">Timezone</label><select class="set-input"><option>UTC +1 (WAT)</option><option>UTC +0 (GMT)</option><option>UTC -5 (EST)</option></select></div>
+                </div>
+                <div style="display:flex;gap:8px;justify-content:flex-end;padding-top:16px;border-top:1px solid var(--border);margin-top:8px;">
+                  <button class="set-btn">Cancel</button>
+                  <button class="set-btn primary">Save Changes</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- SECURITY -->
+            <div class="set-tab" id="tabSecurity">
+              <div class="set-card">
+                <div class="set-card-head"><div class="set-card-title">Password</div><div class="set-card-sub">Change your account password.</div></div>
+                <div class="set-grid">
+                  <div class="set-field"><label class="set-label">Current Password</label><input class="set-input" type="password" placeholder="••••••••"></div>
+                  <div class="set-field"><label class="set-label">New Password</label><input class="set-input" type="password" placeholder="••••••••"></div>
+                </div>
+                <div style="display:flex;gap:8px;justify-content:flex-end;padding-top:16px;border-top:1px solid var(--border);margin-top:8px;">
+                  <button class="set-btn primary">Update Password</button>
+                </div>
+              </div>
+
+              <div class="set-card">
+                <div class="set-card-head"><div class="set-card-title">Two-Factor Authentication</div><div class="set-card-sub">Add an extra layer of security to your account.</div></div>
+                <div class="set-toggle-row">
+                  <div><div style="font-weight:600;font-size:13px;">Authenticator App</div><div style="font-size:11px;color:var(--t2);">Use Google Authenticator or Authy</div></div>
+                  <label class="set-switch"><input type="checkbox" checked><span class="set-slider"></span></label>
+                </div>
+                <div class="set-toggle-row" style="border-bottom:none;">
+                  <div><div style="font-weight:600;font-size:13px;">SMS Codes</div><div style="font-size:11px;color:var(--t2);">Receive codes via SMS as backup</div></div>
+                  <label class="set-switch"><input type="checkbox"><span class="set-slider"></span></label>
+                </div>
+              </div>
+            </div>
+
+            <!-- NOTIFICATIONS -->
+            <div class="set-tab" id="tabNotifications">
+              <div class="set-card">
+                <div class="set-card-head"><div class="set-card-title">Email Notifications</div><div class="set-card-sub">Choose what emails you receive.</div></div>
+                <div class="set-toggle-row"><div><div style="font-weight:600;font-size:13px;">Payment Confirmations</div><div style="font-size:11px;color:var(--t2);">When transactions complete or fail</div></div><label class="set-switch"><input type="checkbox" checked><span class="set-slider"></span></label></div>
+                <div class="set-toggle-row"><div><div style="font-weight:600;font-size:13px;">Refund Updates</div><div style="font-size:11px;color:var(--t2);">When refunds are approved or declined</div></div><label class="set-switch"><input type="checkbox" checked><span class="set-slider"></span></label></div>
+                <div class="set-toggle-row"><div><div style="font-weight:600;font-size:13px;">Dispute Alerts</div><div style="font-size:11px;color:var(--t2);">When new disputes are opened</div></div><label class="set-switch"><input type="checkbox" checked><span class="set-slider"></span></label></div>
+                <div class="set-toggle-row" style="border-bottom:none;"><div><div style="font-weight:600;font-size:13px;">Weekly Reports</div><div style="font-size:11px;color:var(--t2);">Weekly summary of platform activity</div></div><label class="set-switch"><input type="checkbox"><span class="set-slider"></span></label></div>
+              </div>
+            </div>
+
+            <!-- BILLING -->
+            <div class="set-tab" id="tabBilling">
+              <div class="set-card">
+                <div class="set-card-head"><div class="set-card-title">Current Plan</div><div class="set-card-sub">You are on the Pro plan.</div></div>
+                <div class="set-plan">
+                  <div class="set-plan-name">Professional <span class="set-plan-badge">ACTIVE</span></div>
+                  <div class="set-plan-price">₦45,000<span style="font-size:13px;color:var(--t2);font-weight:400;"> /month</span></div>
+                  <div class="set-plan-features">
+                    <span class="set-plan-feature"><i data-lucide="check" style="width:12px;height:12px;color:var(--green);"></i> Up to 10,000 transactions</span>
+                    <span class="set-plan-feature"><i data-lucide="check" style="width:12px;height:12px;color:var(--green);"></i> API access (100 req/min)</span>
+                    <span class="set-plan-feature"><i data-lucide="check" style="width:12px;height:12px;color:var(--green);"></i> Priority support</span>
+                    <span class="set-plan-feature"><i data-lucide="check" style="width:12px;height:12px;color:var(--green);"></i> Custom webhooks</span>
+                  </div>
+                  <button class="set-btn" style="margin-top:12px;">Change Plan</button>
+                </div>
+              </div>
+              <div class="set-card">
+                <div class="set-card-head"><div class="set-card-title">Payment Method</div></div>
+                <div class="set-payment">
+                  <div class="set-payment-icon"><i data-lucide="credit-card" style="width:18px;height:18px;"></i></div>
+                  <div><div style="font-weight:600;font-size:13px;">Visa ending in 4242</div><div style="font-size:11px;color:var(--t2);">Expires 12/28</div></div>
+                  <button class="set-btn" style="margin-left:auto;">Update</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- TEAM -->
+            <div class="set-tab" id="tabTeam">
+              <div class="set-card">
+                <div class="set-card-head"><div class="set-card-title">Team Members</div><div class="set-card-sub">Manage who has access to your account.</div></div>
+                <div class="set-member">
+                  <div class="set-member-av"><img src="https://i.pravatar.cc/60?u=abiodun" alt="A" loading="lazy"></div>
+                  <div><div style="font-weight:600;font-size:13px;">Abiodun Ogunlesi</div><div style="font-size:11px;color:var(--t2);">abiodun@ludofusion.com</div></div>
+                  <span class="set-member-role owner">Owner</span>
+                </div>
+                <div class="set-member">
+                  <div class="set-member-av"><img src="https://i.pravatar.cc/60?u=segun" alt="S" loading="lazy"></div>
+                  <div><div style="font-weight:600;font-size:13px;">Segun Lawal</div><div style="font-size:11px;color:var(--t2);">segun@ludofusion.com</div></div>
+                  <span class="set-member-role admin">Admin</span>
+                </div>
+                <div class="set-member" style="border-bottom:none;">
+                  <div class="set-member-av"><img src="https://i.pravatar.cc/60?u=tosin" alt="T" loading="lazy"></div>
+                  <div><div style="font-weight:600;font-size:13px;">Tosin Adefuye</div><div style="font-size:11px;color:var(--t2);">tosin@ludofusion.com</div></div>
+                  <span class="set-member-role viewer">Viewer</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+</div>
+
+<button class="rp-toggle" id="rpToggle"><i data-lucide="sparkles" style="width:20px;height:20px;"></i></button>
+
+<script src="js/settings.js"></script>
+<script src="js/mobile.js"></script>
+</body>
+</html>

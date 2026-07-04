@@ -1,0 +1,103 @@
+/* ── AUDIT LOG CHIPS ── */
+.al-chips { display: flex; gap: 6px; margin-bottom: 16px; flex-wrap: wrap; align-items: center; }
+.al-chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 6px 12px; border-radius: 8px; border: 1px solid var(--border);
+  background: var(--bg-card); color: var(--t2); font-size: 11.5px; font-weight: 600;
+  cursor: pointer; font-family: inherit; transition: all .15s;
+}
+.al-chip:hover { border-color: var(--border-hi); color: var(--t1); }
+.al-chip.active { background: var(--blue-dim); border-color: var(--blue); color: var(--blue); }
+.al-chip-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+.al-chip-dot.blue { background: var(--blue); }
+.al-chip-dot.green { background: var(--green); }
+.al-chip-dot.amber { background: var(--amber); }
+.al-chip-dot.purple { background: var(--purple); }
+.al-chip-dot.red { background: var(--red); }
+
+/* ── LIVE INDICATOR ── */
+.al-live {
+  display: flex; align-items: center; gap: 8px;
+  padding: 10px 14px; background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: 10px; margin-bottom: 18px; font-size: 12px;
+}
+.al-live-dot {
+  width: 8px; height: 8px; border-radius: 50%; background: var(--green);
+  box-shadow: 0 0 8px var(--green); animation: pulse 2s infinite;
+}
+.al-live-text { color: var(--t2); font-weight: 500; }
+.al-live-count { margin-left: auto; color: var(--t3); font-family: 'Inter',sans-serif; font-size: 11px; }
+
+/* ── LOG FEED ── */
+.al-feed { display: flex; flex-direction: column; gap: 6px; }
+
+.al-date-group { margin-bottom: 4px; }
+.al-date-label {
+  font-size: 11px; font-weight: 700; color: var(--t3); text-transform: uppercase;
+  letter-spacing: .08em; padding: 12px 0 6px; position: sticky; top: 0;
+  background: var(--bg); z-index: 2;
+}
+
+.al-item {
+  display: flex; gap: 12px; padding: 12px 14px;
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: 10px; transition: border-color .2s; cursor: default;
+}
+.al-item:hover { border-color: var(--border-hi); }
+.al-item-icon {
+  width: 34px; height: 34px; border-radius: 9px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+}
+.al-item-icon.auth { background: var(--blue-dim); color: var(--blue); }
+.al-item-icon.payment { background: var(--green-dim); color: var(--green); }
+.al-item-icon.user { background: var(--amber-dim); color: var(--amber); }
+.al-item-icon.system { background: var(--purple-dim); color: var(--purple); }
+.al-item-icon.security { background: var(--red-dim); color: var(--red); }
+
+.al-item-body { flex: 1; min-width: 0; }
+.al-item-action {
+  font-size: 13px; font-weight: 600; color: var(--t1);
+  display: flex; align-items: center; gap: 6px; flex-wrap: wrap;
+}
+.al-item-badge {
+  display: inline-block; padding: 1px 7px; border-radius: 4px;
+  font-size: 10px; font-weight: 700; background: var(--bg-hover); color: var(--t2);
+  letter-spacing: .03em;
+}
+.al-item-badge.create { background: var(--green-dim); color: var(--green); }
+.al-item-badge.update { background: var(--blue-dim); color: var(--blue); }
+.al-item-badge.delete { background: var(--red-dim); color: var(--red); }
+.al-item-desc { font-size: 12px; color: var(--t2); margin-top: 2px; }
+.al-item-meta {
+  display: flex; gap: 14px; margin-top: 5px; font-size: 11px; color: var(--t3);
+}
+.al-item-meta span { display: flex; align-items: center; gap: 4px; }
+
+/* ── EXPANDED DETAIL ── */
+.al-item-detail {
+  max-height: 0; overflow: hidden;
+  transition: max-height .3s ease, padding .3s ease;
+}
+.al-item.expanded .al-item-detail {
+  max-height: 300px; padding-top: 10px; margin-top: 10px;
+  border-top: 1px solid var(--border);
+}
+.al-item-detail-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+  font-size: 12px;
+}
+.al-item-detail-lbl { color: var(--t3); font-size: 10.5px; text-transform: uppercase; letter-spacing: .06em; }
+.al-item-detail-val { font-family: 'Inter',sans-serif; color: var(--t2); font-size: 11px; word-break: break-all; }
+
+/* ── EXPAND BUTTON ── */
+.al-item-expand {
+  width: 24px; height: 24px; border-radius: 6px; border: 1px solid var(--border);
+  background: var(--bg-hover); color: var(--t3); cursor: pointer; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  align-self: flex-start; transition: all .15s;
+}
+.al-item-expand:hover { border-color: var(--border-hi); color: var(--t1); }
+.al-item.expanded .al-item-expand svg { transform: rotate(180deg); }
+
+/* ── LOAD MORE ── */
+#loadMoreBtn { margin: 0 auto; }

@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fornix — Command Center</title>
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ALERT BANNER -->
+<div class="alert">
+  <div class="alert-dot"></div>
+  Setup 2FA to further protect your account
+  <a href="#">Setup 2FA <i data-lucide="arrow-right" style="width:12px;height:12px;"></i></a>
+</div>
+
+<!-- MOBILE OVERLAY -->
+<div class="mobile-overlay" id="mobileOverlay"></div>
+
+<!-- ROOT -->
+<div class="root">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sb-logo" onclick="window.location='index.html'">
+      <div class="logo-brand">
+        <div class="logo-name">Fornix</div>
+        <div class="logo-id">ID: 1838386</div>
+      </div>
+      <div class="logo-chevron"><i data-lucide="chevrons-up-down" style="width:15px;height:15px;"></i></div>
+      <div class="sb-close" id="mobileSidebarClose"><i data-lucide="x" style="width:14px;height:14px;"></i></div>
+    </div>
+
+    <nav class="sb-nav">
+      <div class="nav-label">Main</div>
+      <a href="index.html" style="text-decoration:none;color:inherit;display:block;"><div class="nav-item active">
+        <i data-lucide="layout-dashboard" style="width:16px;height:16px;"></i> Command Center
+      </div></a>
+      <a href="transactions.html" style="text-decoration:none;color:inherit;display:block;"><div class="nav-item">
+        <i data-lucide="arrow-left-right" style="width:16px;height:16px;"></i> Transactions
+      </div></a>
+      <a href="customers.html" style="text-decoration:none;color:inherit;display:block;"><div class="nav-item">
+        <i data-lucide="users" style="width:16px;height:16px;"></i> Customers
+      </div></a>
+      <a href="refunds.html" style="text-decoration:none;color:inherit;display:block;"><div class="nav-item">
+        <i data-lucide="rotate-ccw" style="width:16px;height:16px;"></i> Refunds
+        <span class="nav-badge">4</span>
+      </div></a>
+      <a href="disputes.html" style="text-decoration:none;color:inherit;display:block;"><div class="nav-item">
+        <i data-lucide="flag" style="width:16px;height:16px;"></i> Disputes
+      </div></a>
+      <a href="payouts.html" style="text-decoration:none;color:inherit;display:block;"><div class="nav-item">
+        <i data-lucide="send" style="width:16px;height:16px;"></i> Payouts
+      </div></a>
+
+      <div class="nav-divider"></div>
+      <div class="nav-label">Settings</div>
+
+      <a href="audit-logs.html" style="text-decoration:none;color:inherit;display:block;"><div class="nav-item">
+        <i data-lucide="scroll-text" style="width:16px;height:16px;"></i> Audit Logs
+      </div></a>
+      <a href="developers.html" style="text-decoration:none;color:inherit;display:block;"><div class="nav-item">
+        <i data-lucide="code-2" style="width:16px;height:16px;"></i> Developers
+      </div></a>
+      <a href="settings.html" style="text-decoration:none;color:inherit;display:block;"><div class="nav-item">
+        <i data-lucide="settings" style="width:16px;height:16px;"></i> Settings
+      </div></a>
+    </nav>
+
+    <div class="sb-footer">
+      <div class="user-item">
+        <div class="user-av"><img src="https://i.pravatar.cc/64?u=abiodun" alt="Abiodun" loading="lazy"></div>
+        <div class="user-name">Abiodun</div>
+        <span class="user-arrow"><i data-lucide="chevron-right" style="width:14px;height:14px;"></i></span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <!-- TOPBAR -->
+    <div class="topbar">
+      <div class="topbar-left">
+        <div class="tb-btn mobile-menu-btn" id="mobileMenuBtn"><i data-lucide="menu" style="width:15px;height:15px;"></i></div>
+        <div class="tb-btn" id="sidebarToggle"><i data-lucide="panel-left" style="width:15px;height:15px;"></i></div>
+        <div class="search-bar">
+          <i data-lucide="search" style="width:13px;height:13px;"></i>
+          <input type="text" placeholder="Search transactions, customers…">
+          <span style="font-size:10.5px;color:var(--t3);background:var(--bg-hover);border:1px solid var(--border);border-radius:4px;padding:1px 5px;font-family:'Inter',sans-serif;">⌘K</span>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <div class="live-wrap">
+          <div class="live-dot"></div>
+          <span class="live-text">Live mode</span>
+          <div class="toggle"></div>
+        </div>
+        <div class="tb-btn notif-btn">
+          <i data-lucide="bell" style="width:15px;height:15px;"></i>
+          <div class="notif-dot"></div>
+        </div>
+        <div class="tb-btn"><i data-lucide="settings-2" style="width:15px;height:15px;"></i></div>
+      </div>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="content">
+      <div class="scroll-area">
+
+        <!-- SECTION HEADER -->
+        <div class="section-head" style="margin-bottom:14px;">
+          <div>
+            <div class="section-title">Insights</div>
+            <div class="section-sub">Your business overview for the last 30 days</div>
+          </div>
+        </div>
+
+        <!-- FILTERS -->
+        <div class="filter-row">
+          <button class="filter-btn">
+            <i data-lucide="calendar" style="width:13px;height:13px;"></i> Filter by date
+          </button>
+          <div class="filter-tag">
+            <i data-lucide="calendar-check" style="width:12px;height:12px;"></i>
+            Last 30 days
+            <span class="filter-tag-x"><i data-lucide="x" style="width:11px;height:11px;"></i></span>
+          </div>
+          <button class="filter-btn">
+            <i data-lucide="sliders-horizontal" style="width:13px;height:13px;"></i> More filters
+          </button>
+          <div class="currency-pill">
+            <i data-lucide="coins" style="width:13px;height:13px;color:var(--amber);"></i>
+            NGN <i data-lucide="chevron-down" style="width:12px;height:12px;color:var(--t2);"></i>
+          </div>
+        </div>
+
+        <!-- STATS -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-top">
+              <div class="stat-label">Total Revenue</div>
+              <div class="stat-icon green"><i data-lucide="trending-up" style="width:15px;height:15px;"></i></div>
+            </div>
+            <div class="stat-val" id="rev">₦0</div>
+            <div class="stat-meta"><span class="up">↑ 12.5%</span> vs last month</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-top">
+              <div class="stat-label">Pending Settlements</div>
+              <div class="stat-icon amber"><i data-lucide="clock" style="width:15px;height:15px;"></i></div>
+            </div>
+            <div class="stat-val muted">—</div>
+            <div class="stat-meta">No pending payouts</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-top">
+              <div class="stat-label">Open Disputes</div>
+              <div class="stat-icon red"><i data-lucide="shield-alert" style="width:15px;height:15px;"></i></div>
+            </div>
+            <div class="stat-val" id="disp">0</div>
+            <div class="stat-meta" style="color:var(--green);">All clear</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-top">
+              <div class="stat-label">Avg. Transaction</div>
+              <div class="stat-icon blue"><i data-lucide="bar-chart-3" style="width:15px;height:15px;"></i></div>
+            </div>
+            <div class="stat-val" id="avg">₦0</div>
+            <div class="stat-meta"><span class="up">↑ 8.1%</span> vs last month</div>
+          </div>
+        </div>
+
+        <!-- REVENUE CHART -->
+        <div class="chart-card">
+          <div class="chart-head">
+            <div class="chart-title">Revenue Breakdown</div>
+            <div style="display:flex;align-items:center;gap:12px;">
+              <div class="chart-legend">
+                <div class="legend-item"><div class="legend-dot" style="background:var(--green);"></div>Revenue</div>
+              </div>
+              <div class="chart-tabs">
+                <div class="chart-tab active">1M</div>
+                <div class="chart-tab">3M</div>
+                <div class="chart-tab">6M</div>
+                <div class="chart-tab">1Y</div>
+              </div>
+            </div>
+          </div>
+          <div class="chart-wrap"><canvas id="revenueChart"></canvas></div>
+        </div>
+
+        <!-- GAUGES + QUICK STATS -->
+        <div class="two-col">
+          <div class="gauge-card">
+            <div class="gauge-title">Performance Metrics</div>
+            <div class="gauges-row">
+              <div class="gauge-item">
+                <div class="gauge-wrap"><canvas id="g1"></canvas></div>
+                <div class="gauge-num" style="color:var(--green);">100%</div>
+                <div class="gauge-lbl">Success Rate</div>
+              </div>
+              <div class="gauge-item">
+                <div class="gauge-wrap"><canvas id="g2"></canvas></div>
+                <div class="gauge-num" style="color:var(--red);">0%</div>
+                <div class="gauge-lbl">Payment Issues</div>
+              </div>
+              <div class="gauge-item">
+                <div class="gauge-wrap"><canvas id="g3"></canvas></div>
+                <div class="gauge-num" style="color:var(--amber);">0%</div>
+                <div class="gauge-lbl">Abandoned</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="gauge-card">
+            <div class="gauge-title">Payment Channels</div>
+            <div style="height:156px;position:relative;"><canvas id="channelChart"></canvas></div>
+          </div>
+        </div>
+
+        <!-- TRANSACTIONS -->
+        <div class="txn-card">
+          <div class="txn-head">
+            <div class="txn-title">Recent Transactions</div>
+            <div class="view-all">View all <i data-lucide="arrow-right" style="width:12px;height:12px;"></i></div>
+          </div>
+          <div class="txn-scroll">
+          <table class="txn-table">
+            <thead>
+              <tr>
+                <th>Customer</th>
+                <th>Reference</th>
+                <th>Amount</th>
+                <th>Status</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><div class="txn-user"><div class="txn-av"><img src="https://i.pravatar.cc/60?u=chukwu@email.com" alt="Chukwuemeka" loading="lazy"></div><div><div class="txn-name">Chukwuemeka O.</div><div class="txn-email">chukwu@email.com</div></div></div></td>
+                <td><span class="txn-ref">TXN_8f2a9d31</span></td>
+                <td><span class="txn-amount pos">+ ₦3,250</span></td>
+                <td><span class="pill success"><span class="pill-dot"></span>Success</span></td>
+                <td style="color:var(--t2);font-size:12px;">Jun 5, 2026</td>
+              </tr>
+              <tr>
+                <td><div class="txn-user"><div class="txn-av"><img src="https://i.pravatar.cc/60?u=adaeze@email.com" alt="Adaeze" loading="lazy"></div><div><div class="txn-name">Adaeze Nwosu</div><div class="txn-email">adaeze@email.com</div></div></div></td>
+                <td><span class="txn-ref">TXN_4b71e029</span></td>
+                <td><span class="txn-amount pos">+ ₦1,500</span></td>
+                <td><span class="pill pending"><span class="pill-dot"></span>Pending</span></td>
+                <td style="color:var(--t2);font-size:12px;">Jun 4, 2026</td>
+              </tr>
+              <tr>
+                <td><div class="txn-user"><div class="txn-av"><img src="https://i.pravatar.cc/60?u=bolu@email.com" alt="Bolu" loading="lazy"></div><div><div class="txn-name">Bolu Adeyemi</div><div class="txn-email">bolu@email.com</div></div></div></td>
+                <td><span class="txn-ref">TXN_1c93fa87</span></td>
+                <td><span class="txn-amount" style="color:var(--red);">- ₦800</span></td>
+                <td><span class="pill failed"><span class="pill-dot"></span>Failed</span></td>
+                <td style="color:var(--t2);font-size:12px;">Jun 3, 2026</td>
+              </tr>
+              <tr>
+                <td><div class="txn-user"><div class="txn-av"><img src="https://i.pravatar.cc/60?u=fatima@email.com" alt="Fatima" loading="lazy"></div><div><div class="txn-name">Fatima Bello</div><div class="txn-email">fatima@email.com</div></div></div></td>
+                <td><span class="txn-ref">TXN_d302af51</span></td>
+                <td><span class="txn-amount pos">+ ₦5,000</span></td>
+                <td><span class="pill success"><span class="pill-dot"></span>Success</span></td>
+                <td style="color:var(--t2);font-size:12px;">Jun 2, 2026</td>
+              </tr>
+              <tr>
+                <td><div class="txn-user"><div class="txn-av"><img src="https://i.pravatar.cc/60?u=kemi@email.com" alt="Kemi" loading="lazy"></div><div><div class="txn-name">Kemi Okafor</div><div class="txn-email">kemi@email.com</div></div></div></td>
+                <td><span class="txn-ref">TXN_7e22bc09</span></td>
+                <td><span class="txn-amount pos">+ ₦2,000</span></td>
+                <td><span class="pill success"><span class="pill-dot"></span>Success</span></td>
+                <td style="color:var(--t2);font-size:12px;">Jun 1, 2026</td>
+              </tr>
+            </tbody>
+          </table>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- RIGHT PANEL -->
+      <div class="right-panel">
+        <div class="rp-top">
+          <div class="rp-top-left">
+            <div class="rp-top-icon"><i data-lucide="sparkles" style="width:14px;height:14px;"></i></div>
+            <div>
+              <div class="rp-top-title">AI Assistant</div>
+              <div class="rp-top-sub">New conversation</div>
+            </div>
+          </div>
+          <div class="rp-top-right">
+            <div class="tb-btn"><i data-lucide="rotate-ccw" style="width:13px;height:13px;"></i></div>
+            <div class="tb-btn"><i data-lucide="square-pen" style="width:13px;height:13px;"></i></div>
+          </div>
+        </div>
+
+        <div class="rp-body">
+          <div class="rp-empty">
+            <div class="rp-empty-icon"><i data-lucide="sparkles" style="width:22px;height:22px;"></i></div>
+            <div class="rp-empty-title">What would you like to understand about your business today?</div>
+            <div class="rp-empty-sub">Ask me anything about your transactions, customers, revenue, or performance.</div>
+          </div>
+
+          <div class="quick-row">
+            <div class="quick-card">
+              <div class="quick-label">Total Transactions</div>
+              <div class="quick-val" style="color:var(--blue);">1</div>
+            </div>
+            <div class="quick-card">
+              <div class="quick-label">Unique Customers</div>
+              <div class="quick-val" style="color:var(--purple);">1</div>
+            </div>
+            <div class="quick-card">
+              <div class="quick-label">Success Rate</div>
+              <div class="quick-val" style="color:var(--green);">100%</div>
+            </div>
+            <div class="quick-card">
+              <div class="quick-label">Active Period</div>
+              <div class="quick-val" style="color:var(--amber);font-size:13px;">30 days</div>
+            </div>
+          </div>
+
+          <div class="rp-chips">
+            <button class="chip">What can you do?</button>
+            <button class="chip">Top customers</button>
+            <button class="chip">Avg. transaction</button>
+            <button class="chip">Payment methods</button>
+            <button class="chip">Revenue trend</button>
+          </div>
+
+          <div class="rp-input-area">
+            <div class="rp-textarea-wrap">
+              <textarea class="rp-textarea" placeholder="Ask anything about your business…"></textarea>
+            </div>
+            <div class="rp-actions">
+              <div class="rp-mic"><i data-lucide="mic" style="width:13px;height:13px;"></i></div>
+              <div style="display:flex;align-items:center;gap:6px;">
+                <span style="font-size:11px;color:var(--t3);">Enter to send</span>
+                <div class="rp-send"><i data-lucide="send" style="width:12px;height:12px;"></i></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /content -->
+  </main>
+</div>
+
+<!-- FLOATING RIGHT PANEL TOGGLE (mobile) -->
+<button class="rp-toggle" id="rpToggle" aria-label="Toggle AI Assistant">
+  <i data-lucide="sparkles" style="width:20px;height:20px;"></i>
+</button>
+
+<script src="js/script.js"></script>
+</body>
+</html>

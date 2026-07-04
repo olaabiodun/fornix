@@ -1,0 +1,152 @@
+/* ── DISPUTE STAT CARDS ── */
+.dsp-stats { display: grid; grid-template-columns: repeat(5,1fr); gap: 10px; margin-bottom: 18px; }
+@media (max-width:1100px) { .dsp-stats { grid-template-columns: repeat(3,1fr); } }
+@media (max-width:640px) { .dsp-stats { grid-template-columns: repeat(2,1fr); } }
+
+.dsp-stat {
+  display: flex; align-items: center; gap: 10px;
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 12px 14px;
+  transition: border-color .2s;
+}
+.dsp-stat:hover { border-color: var(--border-hi); }
+.dsp-stat-icon {
+  width: 36px; height: 36px; border-radius: 10px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+}
+.dsp-stat-icon.open { background: var(--blue-dim); color: var(--blue); }
+.dsp-stat-icon.review { background: var(--amber-dim); color: var(--amber); }
+.dsp-stat-icon.won { background: var(--green-dim); color: var(--green); }
+.dsp-stat-icon.lost { background: var(--red-dim); color: var(--red); }
+.dsp-stat-icon.total { background: var(--purple-dim); color: var(--purple); }
+.dsp-stat-info { flex:1; min-width:0; }
+.dsp-stat-val { font-family:'Inter',sans-serif; font-size:18px; font-weight:700; line-height:1; }
+.dsp-stat-lbl { font-size:10.5px; color:var(--t2); margin-top:2px; }
+.dsp-stat-icon.open + .dsp-stat-info .dsp-stat-val { color:var(--blue); }
+.dsp-stat-icon.review + .dsp-stat-info .dsp-stat-val { color:var(--amber); }
+.dsp-stat-icon.won + .dsp-stat-info .dsp-stat-val { color:var(--green); }
+.dsp-stat-icon.lost + .dsp-stat-info .dsp-stat-val { color:var(--red); }
+.dsp-stat-icon.total + .dsp-stat-info .dsp-stat-val { color:var(--purple); }
+
+/* ── STATUS TABS ── */
+.dsp-tabs {
+  display: flex; gap: 6px; margin-bottom: 16px; flex-wrap: wrap;
+}
+.dsp-tab {
+  padding: 7px 14px; border-radius: 8px; border: 1px solid var(--border);
+  background: var(--bg-card); color: var(--t2); font-size: 12px; font-weight: 600;
+  cursor: pointer; font-family: inherit; transition: all .15s;
+}
+.dsp-tab:hover { border-color: var(--border-hi); color: var(--t1); }
+.dsp-tab.active { background: var(--blue-dim); border-color: var(--blue); color: var(--blue); }
+
+/* ── DISPUTE ACCORDION ── */
+.dsp-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+
+.dsp-card {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--radius); overflow: hidden;
+  transition: border-color .2s;
+}
+.dsp-card:hover { border-color: var(--border-hi); }
+.dsp-card-header {
+  display: flex; align-items: center; gap: 12px;
+  padding: 14px 16px; cursor: pointer;
+  transition: background .15s;
+}
+.dsp-card-header:hover { background: var(--bg-hover); }
+.dsp-card-av {
+  width: 32px; height: 32px; border-radius: 9px; overflow: hidden; flex-shrink: 0;
+  background: var(--bg-hover);
+}
+.dsp-card-av img { width:100%; height:100%; object-fit:cover; }
+.dsp-card-info { flex:1; min-width:0; }
+.dsp-card-name { font-size:13px; font-weight:600; }
+.dsp-card-meta { font-size:11px; color:var(--t2); margin-top:1px; }
+.dsp-card-amount {
+  font-family:'Inter',sans-serif; font-size:14px; font-weight:700; flex-shrink:0;
+  margin-right: 10px;
+}
+.dsp-card-status {
+  padding: 3px 9px; border-radius: 20px; font-size:10.5px; font-weight:600; flex-shrink:0;
+}
+.dsp-card-status.open { background:var(--blue-dim); color:var(--blue); }
+.dsp-card-status.review { background:var(--amber-dim); color:var(--amber); }
+.dsp-card-status.won { background:var(--green-dim); color:var(--green); }
+.dsp-card-status.lost { background:var(--red-dim); color:var(--red); }
+.dsp-card-chevron { color:var(--t3); transition:transform .2s; flex-shrink:0; }
+.dsp-card.expanded .dsp-card-chevron { transform:rotate(180deg); }
+
+.dsp-card-body {
+  max-height: 0; overflow: hidden;
+  transition: max-height .3s ease, padding .3s ease;
+}
+.dsp-card.expanded .dsp-card-body {
+  max-height: 400px;
+  padding: 0 16px 16px;
+  border-top: 1px solid var(--border);
+}
+.dsp-card-desc {
+  font-size:12.5px; color:var(--t2); line-height:1.6; margin-bottom:14px; padding-top:14px;
+}
+.dsp-card-detail-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom:14px;
+}
+@media (max-width:480px) { .dsp-card-detail-grid { grid-template-columns:1fr; } }
+.dsp-card-detail-lbl { font-size:10px; color:var(--t3); text-transform:uppercase; letter-spacing:.06em; }
+.dsp-card-detail-val { font-size:12px; font-weight:600; color:var(--t1); }
+.dsp-card-actions {
+  display: flex; gap: 8px;
+}
+.dsp-card-btn {
+  display:flex; align-items:center; gap:5px;
+  padding:8px 14px; border-radius:8px; font-size:11.5px; font-weight:600;
+  cursor:pointer; font-family:inherit; transition:all .12s;
+  border:1px solid var(--border); background:var(--bg-s); color:var(--t2);
+}
+.dsp-card-btn:hover { border-color:var(--border-hi); color:var(--t1); }
+.dsp-card-btn.approve { background:var(--green-dim); color:var(--green); border-color:transparent; }
+.dsp-card-btn.approve:hover { background:var(--green); color:#000; }
+.dsp-card-btn.reject { background:var(--red-dim); color:var(--red); border-color:transparent; }
+.dsp-card-btn.reject:hover { background:var(--red); color:#fff; }
+
+/* ── MODAL CUSTOMIZATIONS ── */
+.dsp-modal { max-width: 640px; }
+.dsp-modal-cust {
+  display: flex; align-items: center; justify-content: space-between;
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: 10px; padding: 12px 14px; margin-bottom: 18px;
+}
+.dsp-modal-cust-left { display:flex; align-items:center; gap:10px; }
+.dsp-modal-av {
+  width: 36px; height: 36px; border-radius: 10px; overflow: hidden; flex-shrink: 0;
+  background: var(--bg-hover);
+}
+.dsp-modal-av img { width:100%; height:100%; object-fit:cover; }
+.dsp-modal-name { font-size:13px; font-weight:600; }
+.dsp-modal-email { font-size:11px; color:var(--t2); }
+.dsp-modal-amt { text-align:right; }
+.dsp-modal-amt-lbl { font-size:10.5px; color:var(--t3); }
+.dsp-modal-amt-val { font-family:'Inter',sans-serif; font-size:20px; font-weight:700; }
+
+.dsp-evidence { margin-bottom: 18px; }
+.dsp-evidence-title { font-size:12px; font-weight:700; margin-bottom:8px; }
+.dsp-evidence-list { display:flex; flex-direction:column; gap:6px; }
+.dsp-evidence-item {
+  display:flex; align-items:center; gap:8px;
+  padding:9px 12px; background:var(--bg-card); border:1px solid var(--border);
+  border-radius:8px; font-size:12px; cursor:pointer;
+  transition: border-color .15s;
+}
+.dsp-evidence-item:hover { border-color:var(--border-hi); }
+.dsp-evidence-icon { color:var(--blue); flex-shrink:0; }
+.dsp-evidence-name { flex:1; font-weight:500; }
+.dsp-evidence-size { font-size:10.5px; color:var(--t3); font-family:'Inter',sans-serif; }
+
+/* ── EMPTY STATE ── */
+.dsp-empty {
+  text-align: center; padding: 60px 20px; color: var(--t3);
+}
+.dsp-empty-icon { margin-bottom: 10px; opacity:.4; }
+.dsp-empty-text { font-size:14px; font-weight:600; color:var(--t2); }
+.dsp-empty-sub { font-size:12px; margin-top:4px; }

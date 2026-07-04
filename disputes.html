@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fornix — Disputes</title>
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js" defer></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/transactions.css">
+<link rel="stylesheet" href="css/disputes.css">
+</head>
+<body>
+
+<div class="alert">
+  <div class="alert-dot"></div>
+  Setup 2FA to further protect your account
+  <a href="#">Setup 2FA <i data-lucide="arrow-right" style="width:12px;height:12px;"></i></a>
+</div>
+
+<div class="mobile-overlay" id="mobileOverlay"></div>
+
+<div class="root">
+  <aside class="sidebar" id="sidebar">
+    <div class="sb-logo" onclick="window.location='index.html'">
+      <div class="logo-brand">
+        <div class="logo-name">Fornix</div>
+        <div class="logo-id">ID: 1838386</div>
+      </div>
+      <div class="logo-chevron"><i data-lucide="chevrons-up-down" style="width:15px;height:15px;"></i></div>
+      <div class="sb-close" id="mobileSidebarClose"><i data-lucide="x" style="width:14px;height:14px;"></i></div>
+    </div>
+    <nav class="sb-nav">
+      <div class="nav-label">Main</div>
+      <a href="index.html" style="text-decoration:none;color:inherit;display:block;"><div class="nav-item"><i data-lucide="layout-dashboard" style="width:16px;height:16px;"></i> Command Center</div></a>
+      <a href="transactions.html" style="text-decoration:none;color:inherit;display:block;"><div class="nav-item"><i data-lucide="arrow-left-right" style="width:16px;height:16px;"></i> Transactions</div></a>
+      <a href="customers.html" style="text-decoration:none;color:inherit;display:block;"><div class="nav-item"><i data-lucide="users" style="width:16px;height:16px;"></i> Customers</div></a>
+      <a href="refunds.html" style="text-decoration:none;color:inherit;display:block;"><div class="nav-item"><i data-lucide="rotate-ccw" style="width:16px;height:16px;"></i> Refunds</div></a>
+      <a href="disputes.html" style="text-decoration:none;color:inherit;display:block;"><div class="nav-item active"><i data-lucide="flag" style="width:16px;height:16px;"></i> Disputes</div></a>
+      <a href="payouts.html" style="text-decoration:none;color:inherit;display:block;"><div class="nav-item"><i data-lucide="send" style="width:16px;height:16px;"></i> Payouts</div></a>
+      <div class="nav-divider"></div>
+      <div class="nav-label">Settings</div>
+      <a href="audit-logs.html" style="text-decoration:none;color:inherit;display:block;"><div class="nav-item"><i data-lucide="scroll-text" style="width:16px;height:16px;"></i> Audit Logs</div></a>
+      <a href="developers.html" style="text-decoration:none;color:inherit;display:block;"><div class="nav-item"><i data-lucide="code-2" style="width:16px;height:16px;"></i> Developers</div></a>
+      <a href="settings.html" style="text-decoration:none;color:inherit;display:block;"><div class="nav-item"><i data-lucide="settings" style="width:16px;height:16px;"></i> Settings</div></a>
+    </nav>
+    <div class="sb-footer">
+      <div class="user-item">
+        <div class="user-av"><img src="https://i.pravatar.cc/64?u=abiodun" alt="Abiodun" loading="lazy"></div>
+        <div class="user-name">Abiodun</div>
+        <span class="user-arrow"><i data-lucide="chevron-right" style="width:14px;height:14px;"></i></span>
+      </div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="topbar">
+      <div class="topbar-left">
+        <div class="tb-btn mobile-menu-btn" id="mobileMenuBtn"><i data-lucide="menu" style="width:15px;height:15px;"></i></div>
+        <div class="tb-btn" id="sidebarToggle"><i data-lucide="panel-left" style="width:15px;height:15px;"></i></div>
+        <div class="search-bar">
+          <i data-lucide="search" style="width:13px;height:13px;"></i>
+          <input type="text" id="disputeSearch" placeholder="Search disputes…">
+          <span style="font-size:10.5px;color:var(--t3);background:var(--bg-hover);border:1px solid var(--border);border-radius:4px;padding:1px 5px;font-family:'Inter',sans-serif;">⌘K</span>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <div class="live-wrap"><div class="live-dot"></div><span class="live-text">Live mode</span><div class="toggle"></div></div>
+        <div class="tb-btn notif-btn"><i data-lucide="bell" style="width:15px;height:15px;"></i><div class="notif-dot"></div></div>
+        <div class="tb-btn"><i data-lucide="settings-2" style="width:15px;height:15px;"></i></div>
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="scroll-area">
+        <div class="section-head" style="margin-bottom:14px;">
+          <div>
+            <div class="section-title">Disputes</div>
+            <div class="section-sub">Manage customer disputes and chargebacks</div>
+          </div>
+          <button class="filter-btn" style="gap:6px;">
+            <i data-lucide="plus" style="width:13px;height:13px;"></i> New Dispute
+          </button>
+        </div>
+
+        <!-- STATS -->
+        <div class="dsp-stats">
+          <div class="dsp-stat">
+            <div class="dsp-stat-icon open"><i data-lucide="flag" style="width:16px;height:16px;"></i></div>
+            <div class="dsp-stat-info"><div class="dsp-stat-val" id="statOpen">0</div><div class="dsp-stat-lbl">Open</div></div>
+          </div>
+          <div class="dsp-stat">
+            <div class="dsp-stat-icon review"><i data-lucide="search" style="width:16px;height:16px;"></i></div>
+            <div class="dsp-stat-info"><div class="dsp-stat-val" id="statReview">0</div><div class="dsp-stat-lbl">Under Review</div></div>
+          </div>
+          <div class="dsp-stat">
+            <div class="dsp-stat-icon won"><i data-lucide="shield-check" style="width:16px;height:16px;"></i></div>
+            <div class="dsp-stat-info"><div class="dsp-stat-val" id="statWon">0</div><div class="dsp-stat-lbl">Resolved (Won)</div></div>
+          </div>
+          <div class="dsp-stat">
+            <div class="dsp-stat-icon lost"><i data-lucide="shield-off" style="width:16px;height:16px;"></i></div>
+            <div class="dsp-stat-info"><div class="dsp-stat-val" id="statLost">0</div><div class="dsp-stat-lbl">Resolved (Lost)</div></div>
+          </div>
+          <div class="dsp-stat">
+            <div class="dsp-stat-icon total"><i data-lucide="scale" style="width:16px;height:16px;"></i></div>
+            <div class="dsp-stat-info"><div class="dsp-stat-val" id="statAtRisk">₦0</div><div class="dsp-stat-lbl">Amount at Risk</div></div>
+          </div>
+        </div>
+
+        <!-- STATUS TABS -->
+        <div class="dsp-tabs">
+          <button class="dsp-tab active" data-filter="all">All</button>
+          <button class="dsp-tab" data-filter="open">Open</button>
+          <button class="dsp-tab" data-filter="review">Under Review</button>
+          <button class="dsp-tab" data-filter="won">Resolved (Won)</button>
+          <button class="dsp-tab" data-filter="lost">Resolved (Lost)</button>
+        </div>
+
+        <!-- DISPUTE ACCORDION LIST -->
+        <div class="dsp-list" id="disputeList"></div>
+
+      </div>
+    </div>
+  </main>
+</div>
+
+<button class="rp-toggle" id="rpToggle" aria-label="Toggle AI Assistant">
+  <i data-lucide="sparkles" style="width:20px;height:20px;"></i>
+</button>
+
+<!-- ── DISPUTE DETAIL MODAL ── -->
+<div class="modal-overlay" id="disputeModalOverlay">
+  <div class="modal dsp-modal">
+    <div class="modal-head">
+      <div class="modal-head-left">
+        <div class="modal-status-icon pending" id="dspModalIcon"><i data-lucide="flag" style="width:18px;height:18px;"></i></div>
+        <div>
+          <div class="modal-title" id="dspModalTitle">Dispute #DSP_001</div>
+          <div class="modal-sub" id="dspModalRef">Opened Jun 10, 2026</div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:6px;">
+        <span class="modal-badge pending" id="dspModalBadge"><span class="bdot"></span>Open</span>
+        <button class="modal-close" id="dspModalClose"><i data-lucide="x" style="width:14px;height:14px;"></i></button>
+      </div>
+    </div>
+    <div class="modal-body">
+      <!-- Customer + Amount -->
+      <div class="dsp-modal-cust">
+        <div class="dsp-modal-cust-left">
+          <div class="dsp-modal-av" id="dspModalAv"><img src="https://i.pravatar.cc/60?u=a" alt="" loading="lazy"></div>
+          <div>
+            <div class="dsp-modal-name" id="dspModalName">—</div>
+            <div class="dsp-modal-email" id="dspModalEmail">—</div>
+          </div>
+        </div>
+        <div class="dsp-modal-amt">
+          <div class="dsp-modal-amt-lbl">Disputed Amount</div>
+          <div class="dsp-modal-amt-val" id="dspModalAmount" style="color:var(--red);">₦0</div>
+        </div>
+      </div>
+      <!-- Detail grid -->
+      <div class="detail-grid">
+        <div class="detail-item"><div class="detail-lbl">Reason</div><div class="detail-val" id="dspModalReason">—</div></div>
+        <div class="detail-item"><div class="detail-lbl">Transaction Ref</div><div class="detail-val mono" id="dspModalTxnRef">—</div></div>
+        <div class="detail-item"><div class="detail-lbl">Payment Method</div><div class="detail-val" id="dspModalMethod">—</div></div>
+        <div class="detail-item"><div class="detail-lbl">Opened</div><div class="detail-val" id="dspModalOpened">—</div></div>
+      </div>
+      <!-- Evidence -->
+      <div class="dsp-evidence">
+        <div class="dsp-evidence-title">Evidence</div>
+        <div class="dsp-evidence-list" id="dspModalEvidence"></div>
+      </div>
+      <!-- Timeline -->
+      <div class="timeline">
+        <div class="timeline-title">Activity Timeline</div>
+        <div class="timeline-list" id="dspModalTimeline"></div>
+      </div>
+      <!-- Actions -->
+      <div class="modal-actions">
+        <button class="modal-btn primary" id="dspModalResolve"><i data-lucide="check" style="width:13px;height:13px;"></i> Resolve (Won)</button>
+        <button class="modal-btn" id="dspModalLose"><i data-lucide="x" style="width:13px;height:13px;"></i> Resolve (Lost)</button>
+        <button class="modal-btn"><i data-lucide="message-square" style="width:13px;height:13px;"></i> Message</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="js/disputes.js"></script>
+<script src="js/mobile.js"></script>
+</body>
+</html>

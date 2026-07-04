@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fornix — Customers</title>
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js" defer></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/transactions.css">
+<link rel="stylesheet" href="css/customers.css">
+</head>
+<body>
+
+<!-- ALERT BANNER -->
+<div class="alert">
+  <div class="alert-dot"></div>
+  Setup 2FA to further protect your account
+  <a href="#">Setup 2FA <i data-lucide="arrow-right" style="width:12px;height:12px;"></i></a>
+</div>
+
+<!-- MOBILE OVERLAY -->
+<div class="mobile-overlay" id="mobileOverlay"></div>
+
+<!-- ROOT -->
+<div class="root">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sb-logo" onclick="window.location='index.html'">
+      <div class="logo-brand">
+        <div class="logo-name">Fornix</div>
+        <div class="logo-id">ID: 1838386</div>
+      </div>
+      <div class="logo-chevron"><i data-lucide="chevrons-up-down" style="width:15px;height:15px;"></i></div>
+      <div class="sb-close" id="mobileSidebarClose"><i data-lucide="x" style="width:14px;height:14px;"></i></div>
+    </div>
+
+    <nav class="sb-nav">
+      <div class="nav-label">Main</div>
+      <a href="index.html" style="text-decoration:none;color:inherit;display:block;"><div class="nav-item">
+        <i data-lucide="layout-dashboard" style="width:16px;height:16px;"></i> Command Center
+      </div></a>
+      <a href="transactions.html" style="text-decoration:none;color:inherit;display:block;"><div class="nav-item">
+        <i data-lucide="arrow-left-right" style="width:16px;height:16px;"></i> Transactions
+      </div></a>
+      <a href="customers.html" style="text-decoration:none;color:inherit;display:block;"><div class="nav-item active">
+        <i data-lucide="users" style="width:16px;height:16px;"></i> Customers
+      </div></a>
+      <a href="refunds.html" style="text-decoration:none;color:inherit;display:block;"><div class="nav-item">
+        <i data-lucide="rotate-ccw" style="width:16px;height:16px;"></i> Refunds
+        <span class="nav-badge">4</span>
+      </div></a>
+      <a href="disputes.html" style="text-decoration:none;color:inherit;display:block;"><div class="nav-item">
+        <i data-lucide="flag" style="width:16px;height:16px;"></i> Disputes
+      </div></a>
+      <a href="payouts.html" style="text-decoration:none;color:inherit;display:block;"><div class="nav-item">
+        <i data-lucide="send" style="width:16px;height:16px;"></i> Payouts
+      </div></a>
+
+      <div class="nav-divider"></div>
+      <div class="nav-label">Settings</div>
+
+      <a href="audit-logs.html" style="text-decoration:none;color:inherit;display:block;"><div class="nav-item">
+        <i data-lucide="scroll-text" style="width:16px;height:16px;"></i> Audit Logs
+      </div></a>
+      <a href="developers.html" style="text-decoration:none;color:inherit;display:block;"><div class="nav-item">
+        <i data-lucide="code-2" style="width:16px;height:16px;"></i> Developers
+      </div></a>
+      <a href="settings.html" style="text-decoration:none;color:inherit;display:block;"><div class="nav-item">
+        <i data-lucide="settings" style="width:16px;height:16px;"></i> Settings
+      </div></a>
+    </nav>
+
+    <div class="sb-footer">
+      <div class="user-item">
+        <div class="user-av"><img src="https://i.pravatar.cc/64?u=abiodun" alt="Abiodun" loading="lazy"></div>
+        <div class="user-name">Abiodun</div>
+        <span class="user-arrow"><i data-lucide="chevron-right" style="width:14px;height:14px;"></i></span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <!-- TOPBAR -->
+    <div class="topbar">
+      <div class="topbar-left">
+        <div class="tb-btn mobile-menu-btn" id="mobileMenuBtn"><i data-lucide="menu" style="width:15px;height:15px;"></i></div>
+        <div class="tb-btn" id="sidebarToggle"><i data-lucide="panel-left" style="width:15px;height:15px;"></i></div>
+        <div class="search-bar">
+          <i data-lucide="search" style="width:13px;height:13px;"></i>
+          <input type="text" id="custSearch" placeholder="Search by name, email, phone…">
+          <span style="font-size:10.5px;color:var(--t3);background:var(--bg-hover);border:1px solid var(--border);border-radius:4px;padding:1px 5px;font-family:'Inter',sans-serif;">⌘K</span>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <div class="live-wrap">
+          <div class="live-dot"></div>
+          <span class="live-text">Live mode</span>
+          <div class="toggle"></div>
+        </div>
+        <div class="tb-btn notif-btn">
+          <i data-lucide="bell" style="width:15px;height:15px;"></i>
+          <div class="notif-dot"></div>
+        </div>
+        <div class="tb-btn"><i data-lucide="settings-2" style="width:15px;height:15px;"></i></div>
+      </div>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="content">
+      <div class="scroll-area">
+
+        <!-- SECTION HEADER -->
+        <div class="section-head" style="margin-bottom:14px;">
+          <div>
+            <div class="section-title">Customers</div>
+            <div class="section-sub">Manage your customer base and their activity</div>
+          </div>
+          <button class="filter-btn primary" style="gap:6px;" id="addCustBtn">
+            <i data-lucide="user-plus" style="width:13px;height:13px;"></i> Add Customer
+          </button>
+        </div>
+
+        <!-- STATS -->
+        <div class="cust-stats">
+          <div class="txn-stat-card">
+            <div class="txn-stat-top">
+              <div class="txn-stat-icon green"><i data-lucide="users" style="width:14px;height:14px;"></i></div>
+              <div class="txn-stat-lbl">Total Customers</div>
+            </div>
+            <div class="txn-stat-val" id="statTotal" style="color:var(--green);">0</div>
+            <div class="txn-stat-sub">All registered</div>
+          </div>
+          <div class="txn-stat-card">
+            <div class="txn-stat-top">
+              <div class="txn-stat-icon blue"><i data-lucide="user-check" style="width:14px;height:14px;"></i></div>
+              <div class="txn-stat-lbl">Active</div>
+            </div>
+            <div class="txn-stat-val" id="statActive" style="color:var(--blue);">0</div>
+            <div class="txn-stat-sub">Active &amp; VIP</div>
+          </div>
+          <div class="txn-stat-card">
+            <div class="txn-stat-top">
+              <div class="txn-stat-icon amber"><i data-lucide="award" style="width:14px;height:14px;"></i></div>
+              <div class="txn-stat-lbl">VIP</div>
+            </div>
+            <div class="txn-stat-val" id="statVip" style="color:var(--amber);">0</div>
+            <div class="txn-stat-sub">High-value customers</div>
+          </div>
+          <div class="txn-stat-card">
+            <div class="txn-stat-top">
+              <div class="txn-stat-icon green"><i data-lucide="trending-up" style="width:14px;height:14px;"></i></div>
+              <div class="txn-stat-lbl">Total Volume</div>
+            </div>
+            <div class="txn-stat-val" id="statVolume">₦0</div>
+            <div class="txn-stat-sub">Lifetime revenue</div>
+          </div>
+        </div>
+
+        <!-- FILTERS -->
+        <div class="filter-row">
+          <button class="filter-btn">
+            <i data-lucide="calendar" style="width:13px;height:13px;"></i> Filter by date
+          </button>
+          <div class="filter-tag">
+            <i data-lucide="calendar-check" style="width:12px;height:12px;"></i>
+            All time
+            <span class="filter-tag-x"><i data-lucide="x" style="width:11px;height:11px;"></i></span>
+          </div>
+          <select class="filter-select" id="statusFilter">
+            <option value="all">All Status</option>
+            <option value="active">Active</option>
+            <option value="vip">VIP</option>
+            <option value="inactive">Inactive</option>
+          </select>
+          <div class="currency-pill">
+            <i data-lucide="coins" style="width:13px;height:13px;color:var(--amber);"></i>
+            NGN <i data-lucide="chevron-down" style="width:12px;height:12px;color:var(--t2);"></i>
+          </div>
+        </div>
+
+        <!-- CUSTOMERS TABLE -->
+        <div class="txn-card" style="padding-bottom:0;">
+          <div class="txn-head">
+            <div class="txn-title">All Customers</div>
+          </div>
+          <div class="txn-scroll">
+          <table class="txn-table cust-table">
+            <thead>
+              <tr>
+                <th>Customer</th>
+                <th>Phone</th>
+                <th>Total Spent</th>
+                <th>Transactions</th>
+                <th>Status</th>
+                <th>Joined</th>
+              </tr>
+            </thead>
+            <tbody id="custTableBody"></tbody>
+          </table>
+          </div>
+          <div class="pagination" id="custPagination">
+            <div class="pagination-info">Showing 0–0 of 0</div>
+            <div class="pagination-actions"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+</div>
+
+<!-- FLOATING RIGHT PANEL TOGGLE (mobile) -->
+<button class="rp-toggle" id="rpToggle" aria-label="Toggle AI Assistant">
+  <i data-lucide="sparkles" style="width:20px;height:20px;"></i>
+</button>
+
+<!-- ── CUSTOMER DETAIL MODAL ── -->
+<div class="modal-overlay" id="custModalOverlay">
+  <div class="modal cust-modal">
+    <!-- HEADER -->
+    <div class="cust-modal-head">
+      <div class="cust-modal-av" id="custModalAv">
+        <img src="https://i.pravatar.cc/60?u=chukwu@email.com" alt="C" loading="lazy">
+      </div>
+      <div class="cust-modal-hdr-info">
+        <div class="cust-modal-name" id="custModalName">Chukwuemeka O.</div>
+        <div class="cust-modal-email" id="custModalEmail">chukwu@email.com</div>
+      </div>
+      <div class="cust-modal-hdr-right">
+        <div class="cust-modal-spent-label">Lifetime Spent</div>
+        <div class="cust-modal-spent-val" id="custModalSpent">₦3,250</div>
+        <span class="cust-status active" id="custModalStatusBadge" style="margin-top:4px;"><span class="sdot"></span>Active</span>
+      </div>
+      <button class="modal-close" id="custModalClose" style="flex-shrink:0;">
+        <i data-lucide="x" style="width:14px;height:14px;"></i>
+      </button>
+    </div>
+
+    <!-- METRICS -->
+    <div class="cust-metrics">
+      <div class="cust-metric">
+        <div class="cust-metric-val" id="metricTransactions" style="color:var(--blue);">1</div>
+        <div class="cust-metric-lbl">Transactions</div>
+      </div>
+      <div class="cust-metric">
+        <div class="cust-metric-val" id="metricAvgOrder" style="color:var(--green);">₦0</div>
+        <div class="cust-metric-lbl">Avg. Order Value</div>
+      </div>
+      <div class="cust-metric">
+        <div class="cust-metric-val" id="metricJoined" style="color:var(--t1);">—</div>
+        <div class="cust-metric-lbl">Customer Since</div>
+      </div>
+    </div>
+
+    <!-- BODY -->
+    <div class="cust-detail-body">
+
+      <!-- DETAILS -->
+      <div class="cust-info-grid">
+        <div class="cust-info-item">
+          <div class="cust-info-lbl">Phone</div>
+          <div class="cust-info-val" id="detailPhone">+234 802 345 6789</div>
+        </div>
+        <div class="cust-info-item">
+          <div class="cust-info-lbl">Email</div>
+          <div class="cust-info-val" id="detailEmail">chukwu@email.com</div>
+        </div>
+        <div class="cust-info-item">
+          <div class="cust-info-lbl">Customer ID</div>
+          <div class="cust-info-val" id="detailId" style="font-family:'Inter',sans-serif;">CUS_001</div>
+        </div>
+        <div class="cust-info-item">
+          <div class="cust-info-lbl">Status</div>
+          <div id="detailStatus"><span class="cust-status active"><span class="sdot"></span>Active</span></div>
+        </div>
+      </div>
+
+      <!-- RECENT ACTIVITY -->
+      <div class="cust-activity">
+        <div class="cust-section-title">Recent Activity</div>
+        <div class="cust-activity-list" id="custActivityList"></div>
+      </div>
+
+      <!-- ACTIONS -->
+      <div class="cust-modal-actions">
+        <button class="cust-modal-btn primary"><i data-lucide="mail" style="width:13px;height:13px;"></i> Send Message</button>
+        <button class="cust-modal-btn"><i data-lucide="arrow-left-right" style="width:13px;height:13px;"></i> View Transactions</button>
+        <button class="cust-modal-btn"><i data-lucide="more-horizontal" style="width:13px;height:13px;"></i></button>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<!-- ── ADD CUSTOMER FORM MODAL ── -->
+<div class="modal-overlay" id="addCustModalOverlay">
+  <div class="modal form-modal">
+    <div class="modal-head">
+      <div class="modal-head-left">
+        <div class="modal-status-icon green"><i data-lucide="user-plus" style="width:18px;height:18px;"></i></div>
+        <div>
+          <div class="modal-title">Add Customer</div>
+          <div class="modal-sub">Create a new customer record</div>
+        </div>
+      </div>
+      <button class="modal-close" id="addCustModalClose"><i data-lucide="x" style="width:14px;height:14px;"></i></button>
+    </div>
+    <div class="form-body">
+      <div class="form-group">
+        <label class="form-label" for="addCustName">Full Name</label>
+        <input class="form-input" id="addCustName" type="text" placeholder="e.g. Adebayo Ogunlesi">
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label" for="addCustEmail">Email</label>
+          <input class="form-input" id="addCustEmail" type="email" placeholder="adebayo@email.com">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="addCustPhone">Phone</label>
+          <input class="form-input" id="addCustPhone" type="tel" placeholder="+234 80X XXX XXXX">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="addCustStatus">Status</label>
+        <select class="form-select" id="addCustStatus">
+          <option value="active">Active</option>
+          <option value="vip">VIP</option>
+          <option value="inactive">Inactive</option>
+        </select>
+      </div>
+      <div class="form-actions">
+        <button class="form-btn" id="addCustCancel">Cancel</button>
+        <button class="form-btn primary" id="addCustSave"><i data-lucide="check" style="width:13px;height:13px;"></i> Save Customer</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="js/customers.js"></script>
+<script src="js/mobile.js"></script>
+</body>
+</html>
