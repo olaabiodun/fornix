@@ -312,6 +312,156 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   })();
 
+  /* ── AI CHAT ── */
+  (function () {
+    var rpEmpty = document.getElementById('rpEmpty');
+    var rpMsgs = document.getElementById('rpMsgs');
+    var rpInput = document.getElementById('rpInput');
+    var rpSend = document.getElementById('rpSend');
+    var rpChips = document.getElementById('rpChips');
+    var rpClear = document.getElementById('rpClear');
+    var rpNewChat = document.getElementById('rpNewChat');
+
+    var aiResponses = {
+      'what can you do': 'I can help you analyze your business data in real time. Ask me about transaction volumes, customer trends, payment method distribution, revenue over time, refund rates, or any metric on your dashboard. I can also provide summaries, comparisons, and forecasts based on your current data.',
+      'top customers': 'Your top customers by transaction volume this month:\n\n1. **Chioma Okonkwo** — ₦245,000 (14 transactions)\n2. **Emeka Nwosu** — ₦189,500 (9 transactions)\n3. **Aisha Bello** — ₦156,200 (11 transactions)\n4. **Tunde Balogun** — ₦132,800 (7 transactions)\n5. **Ngozi Eze** — ₦118,400 (8 transactions)\n\nWould you like a detailed breakdown for any of these customers?',
+      'avg transaction': 'Your average transaction value across all payment methods is **₦3,250**.\n\nBreakdown by method:\n- **Card**: ₦4,100\n- **Bank Transfer**: ₦2,850\n- **USSD**: ₦1,200\n- **QR**: ₦950\n\nThis is up 8% compared to last month.',
+      'payment methods': 'Payment method distribution for the current period:\n\n• **Card**: 65% (₦2.1M)\n• **Bank Transfer**: 20% (₦650K)\n• **USSD**: 10% (₦325K)\n• **QR**: 5% (₦162K)\n\nCard payments continue to dominate, growing 12% month-over-month.',
+      'revenue trend': 'Revenue has shown steady growth over the past 30 days. Total revenue is currently **₦3,250,000**, with a daily average of **₦108,333**.\n\n• Best day: June 15 (₦215,000)\n• Worst day: June 8 (₦48,000)\n• Week-over-week growth: **+7.2%**\n\nProjected month-end: ~₦3.5M at current pace.',
+    };
+
+    function addMsg(text, isUser) {
+      if (rpEmpty) rpEmpty.style.display = 'none';
+      if (rpMsgs) rpMsgs.classList.add('show');
+
+      var msg = document.createElement('div');
+      msg.className = 'rp-msg ' + (isUser ? 'user' : 'ai');
+      msg.style.animationDelay = '0s';
+
+      var av = document.createElement('div');
+      av.className = 'rp-msg-av' + (isUser ? '' : ' ai');
+      if (isUser) {
+        av.innerHTML = '<img src="https://i.pravatar.cc/60?u=abiodun" alt="U" loading="lazy">';
+      } else {
+        av.innerHTML = '<i data-lucide="sparkles" style="width:13px;height:13px;"></i>';
+      }
+
+      var bubble = document.createElement('div');
+      bubble.className = 'rp-msg-bubble';
+      bubble.textContent = text;
+
+      msg.appendChild(av);
+      msg.appendChild(bubble);
+      if (rpMsgs) {
+        rpMsgs.appendChild(msg);
+        rpMsgs.scrollTop = rpMsgs.scrollHeight;
+      }
+
+      if (typeof lucide !== 'undefined') lucide.createIcons();
+    }
+
+    function showTyping() {
+      var el = document.createElement('div');
+      el.className = 'rp-msg ai';
+      el.id = 'rpTyping';
+      el.style.animationDelay = '0s';
+      el.innerHTML =
+        '<div class="rp-msg-av ai"><i data-lucide="sparkles" style="width:13px;height:13px;"></i></div>' +
+        '<div class="rp-msg-bubble"><div class="rp-typing"><span></span><span></span><span></span></div></div>';
+      if (rpMsgs) {
+        rpMsgs.appendChild(el);
+        rpMsgs.scrollTop = rpMsgs.scrollHeight;
+      }
+      if (typeof lucide !== 'undefined') lucide.createIcons();
+    }
+
+    function removeTyping() {
+      var el = document.getElementById('rpTyping');
+      if (el) el.remove();
+    }
+
+    function getResponse(query) {
+      var q = query.toLowerCase().trim();
+      for (var key in aiResponses) {
+        if (q.includes(key)) return aiResponses[key];
+      }
+      if (/^(hi|hello|hey|howdy|sup|good morning|good evening)/.test(q)) {
+        return 'Hi there! 👋 I\'m your Fornix AI assistant. I can help you analyze your business metrics, transactions, customers, and more. What would you like to explore?';
+      }
+      if (/how are you|how('s| is) it going/.test(q)) {
+        return 'I\'m running smoothly! 😊 All systems are operational and I\'m ready to help you with your business data. What would you like to know?';
+      }
+      if (/thank|thanks/.test(q)) {
+        return 'You\'re welcome! If you have any more questions about your business data, feel free to ask.';
+      }
+      if (/(revenue|income|earnings)/.test(q)) {
+        return 'Your current revenue stands at **₦3,250,000** for the past 30 days. That\'s a 12% increase from the previous period. The daily average is approximately **₦108,333**. Would you like a breakdown by payment method or a daily trend?';
+      }
+      if (/(refund|cancel|chargeback)/.test(q)) {
+        return 'Your refund rate is currently **2.3%** (67 refunds out of 2,847 transactions). The total refunded amount is **₦74,750**. Most refunds are in the Pending state (42%), with 35% Approved and 23% Declined.';
+      }
+      if (/(customer|user|client)/.test(q)) {
+        return 'You have **1,230 unique customers** in the current period. Your top 5 customers account for 32% of total transaction volume. The customer retention rate is **78%**, and the average customer lifetime value is **₦8,450**.';
+      }
+      if (/(dispute|chargeback)/.test(q)) {
+        return 'You have **23 active disputes** (0.8% of transactions). Currently 8 are Open, 9 Under Review, 4 Won, and 2 Lost. The average dispute resolution time is **5.2 days**. Would you like details on any specific dispute?';
+      }
+      return 'I understand you\'re asking about "' + q + '". Based on your current data, I can help with transaction analytics, customer insights, revenue trends, payment method breakdowns, and refund/dispute summaries. Could you rephrase or pick one of the suggested topics above?';
+    }
+
+    function ask(query) {
+      if (!query || !query.trim()) return;
+      addMsg(query, true);
+      setTimeout(function () {
+        showTyping();
+        setTimeout(function () {
+          removeTyping();
+          addMsg(getResponse(query), false);
+        }, 800 + Math.random() * 700);
+      }, 200);
+    }
+
+    function sendInput() {
+      var val = rpInput ? rpInput.value.trim() : '';
+      if (!val) return;
+      rpInput.value = '';
+      rpInput.style.height = 'auto';
+      ask(val);
+    }
+
+    if (rpInput) {
+      rpInput.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' && !e.shiftKey) {
+          e.preventDefault();
+          sendInput();
+        }
+      });
+    }
+
+    if (rpSend) rpSend.addEventListener('click', sendInput);
+
+    if (rpChips) {
+      rpChips.addEventListener('click', function (e) {
+        var chip = e.target.closest('.chip');
+        if (!chip) return;
+        var q = chip.getAttribute('data-ask');
+        if (q) ask(q);
+      });
+    }
+
+    function newChat() {
+      if (rpMsgs) {
+        rpMsgs.innerHTML = '';
+        rpMsgs.classList.remove('show');
+      }
+      if (rpEmpty) rpEmpty.style.display = 'flex';
+      if (rpInput) rpInput.value = '';
+    }
+
+    if (rpNewChat) rpNewChat.addEventListener('click', newChat);
+    if (rpClear) rpClear.addEventListener('click', newChat);
+  })();
+
   /* ── USER PROFILE POPUP ── */
   var userItem = document.querySelector('.sb-footer .user-item');
   if (userItem && !document.querySelector('.user-popup')) {

@@ -294,30 +294,32 @@
             </div>
           </div>
           <div class="rp-top-right">
-            <div class="tb-btn"><i data-lucide="rotate-ccw" style="width:13px;height:13px;"></i></div>
-            <div class="tb-btn"><i data-lucide="square-pen" style="width:13px;height:13px;"></i></div>
+            <div class="tb-btn" id="rpClear"><i data-lucide="rotate-ccw" style="width:13px;height:13px;"></i></div>
+            <div class="tb-btn" id="rpNewChat"><i data-lucide="square-pen" style="width:13px;height:13px;"></i></div>
           </div>
         </div>
 
         <div class="rp-body">
-          <div class="rp-empty">
+          <div class="rp-empty" id="rpEmpty">
             <div class="rp-empty-icon"><i data-lucide="sparkles" style="width:22px;height:22px;"></i></div>
             <div class="rp-empty-title">What would you like to understand about your business today?</div>
             <div class="rp-empty-sub">Ask me anything about your transactions, customers, revenue, or performance.</div>
           </div>
 
+          <div class="rp-msgs" id="rpMsgs"></div>
+
           <div class="quick-row">
             <div class="quick-card">
               <div class="quick-label">Total Transactions</div>
-              <div class="quick-val" style="color:var(--blue);">1</div>
+              <div class="quick-val" style="color:var(--blue);">2,847</div>
             </div>
             <div class="quick-card">
               <div class="quick-label">Unique Customers</div>
-              <div class="quick-val" style="color:var(--purple);">1</div>
+              <div class="quick-val" style="color:var(--purple);">1,230</div>
             </div>
             <div class="quick-card">
               <div class="quick-label">Success Rate</div>
-              <div class="quick-val" style="color:var(--green);">100%</div>
+              <div class="quick-val" style="color:var(--green);">97.8%</div>
             </div>
             <div class="quick-card">
               <div class="quick-label">Active Period</div>
@@ -325,23 +327,23 @@
             </div>
           </div>
 
-          <div class="rp-chips">
-            <button class="chip">What can you do?</button>
-            <button class="chip">Top customers</button>
-            <button class="chip">Avg. transaction</button>
-            <button class="chip">Payment methods</button>
-            <button class="chip">Revenue trend</button>
+          <div class="rp-chips" id="rpChips">
+            <button class="chip" data-ask="what can you do">What can you do?</button>
+            <button class="chip" data-ask="top customers">Top customers</button>
+            <button class="chip" data-ask="avg transaction">Avg. transaction</button>
+            <button class="chip" data-ask="payment methods">Payment methods</button>
+            <button class="chip" data-ask="revenue trend">Revenue trend</button>
           </div>
 
           <div class="rp-input-area">
             <div class="rp-textarea-wrap">
-              <textarea class="rp-textarea" placeholder="Ask anything about your business…"></textarea>
+              <textarea class="rp-textarea" id="rpInput" placeholder="Ask anything about your business…" rows="2"></textarea>
             </div>
             <div class="rp-actions">
               <div class="rp-mic"><i data-lucide="mic" style="width:13px;height:13px;"></i></div>
               <div style="display:flex;align-items:center;gap:6px;">
                 <span style="font-size:11px;color:var(--t3);">Enter to send</span>
-                <div class="rp-send"><i data-lucide="send" style="width:12px;height:12px;"></i></div>
+                <div class="rp-send" id="rpSend"><i data-lucide="send" style="width:12px;height:12px;"></i></div>
               </div>
             </div>
           </div>

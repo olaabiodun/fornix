@@ -427,6 +427,44 @@ body {
   border-radius: 10px; padding: 14px;
 }
 .quick-label { font-size: 11px; color: var(--t2); margin-bottom: 6px; }
+.quick-val { font-weight: 700; font-size: 15px; font-family: 'Inter', monospace; }
+
+/* ── AI CHAT BUBBLES ── */
+.rp-msgs { flex: 1; display: flex; flex-direction: column; gap: 12px; padding: 16px 0; overflow-y: auto; display: none; }
+.rp-msgs.show { display: flex; }
+.rp-msg { display: flex; gap: 10px; max-width: 90%; animation: fadeUp .25s ease both; }
+.rp-msg.user { align-self: flex-end; flex-direction: row-reverse; }
+.rp-msg-av {
+  width: 28px; height: 28px; border-radius: 8px; overflow: hidden; flex-shrink: 0;
+  background: var(--bg-hover);
+}
+.rp-msg-av img { width: 100%; height: 100%; object-fit: cover; }
+.rp-msg-av.ai {
+  background: var(--green-dim); color: var(--green);
+  display: flex; align-items: center; justify-content: center;
+}
+.rp-msg-bubble {
+  padding: 9px 13px; border-radius: 12px; font-size: 12.5px; line-height: 1.6;
+}
+.rp-msg.user .rp-msg-bubble {
+  background: var(--green); color: #000; border-bottom-right-radius: 4px;
+}
+.rp-msg.ai .rp-msg-bubble {
+  background: var(--bg-card); border: 1px solid var(--border); color: var(--t1); border-bottom-left-radius: 4px;
+}
+.rp-typing {
+  display: flex; align-items: center; gap: 4px; padding: 2px 0;
+}
+.rp-typing span {
+  width: 5px; height: 5px; border-radius: 50%;
+  background: var(--t3); animation: rpBounce 1.2s infinite;
+}
+.rp-typing span:nth-child(2) { animation-delay: .2s; }
+.rp-typing span:nth-child(3) { animation-delay: .4s; }
+@keyframes rpBounce {
+  0%,60%,100% { transform: translateY(0); }
+  30% { transform: translateY(-4px); background: var(--green); }
+}
 .quick-val { font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 700; }
 
 /* ANIMATIONS */
