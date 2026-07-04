@@ -677,3 +677,38 @@ body {
 .light-mode .mobile-overlay { background: rgba(0,0,0,.3); }
 .light-mode .sb-logo-accent { background: var(--green); }
 .light-mode .chart-tab.active { box-shadow: 0 1px 4px rgba(0,0,0,.08); }
+
+/* ── NOTIFICATION DROPDOWN ── */
+.notif-dropdown {
+  position: absolute; top: calc(100% + 6px); right: 0; width: 280px;
+  background: var(--bg-card); border: 1px solid var(--border-hi);
+  border-radius: 12px; box-shadow: 0 8px 40px rgba(0,0,0,.5);
+  opacity: 0; visibility: hidden; transform: translateY(8px) scale(.97);
+  transform-origin: top right; transition: all .2s cubic-bezier(.4,0,.2,1);
+  z-index: 60; overflow: hidden;
+}
+.notif-dropdown.open { opacity: 1; visibility: visible; transform: translateY(0) scale(1); }
+.notif-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 14px; border-bottom: 1px solid var(--border);
+}
+.notif-head-title { font-size: 13px; font-weight: 700; }
+.notif-head-action { font-size: 11px; color: var(--blue); cursor: pointer; background: none; border: none; font-family: inherit; }
+.notif-item {
+  display: flex; gap: 10px; padding: 10px 14px; border-bottom: 1px solid var(--border);
+  transition: background .12s; cursor: pointer;
+}
+.notif-item:hover { background: var(--bg-hover); }
+.notif-item:last-child { border-bottom: none; }
+.notif-item-icon {
+  width: 28px; height: 28px; border-radius: 8px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+}
+.notif-item-icon.green { background: var(--green-dim); color: var(--green); }
+.notif-item-icon.blue { background: var(--blue-dim); color: var(--blue); }
+.notif-item-icon.amber { background: var(--amber-dim); color: var(--amber); }
+.notif-item-icon.red { background: var(--red-dim); color: var(--red); }
+.notif-item-body { flex: 1; min-width: 0; }
+.notif-item-text { font-size: 12px; line-height: 1.4; }
+.notif-item-time { font-size: 10.5px; color: var(--t3); margin-top: 2px; }
+.notif-empty { padding: 24px; text-align: center; font-size: 12px; color: var(--t3); }

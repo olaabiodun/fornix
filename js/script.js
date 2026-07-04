@@ -67,6 +67,66 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
+  /* ── TOPBAR BUTTONS ── */
+  (function () {
+    var topbar = document.querySelector('.topbar');
+    if (!topbar) return;
+
+    topbar.addEventListener('click', function (e) {
+      var target = e.target.closest('.tb-btn, .toggle, .search-bar, .notif-btn');
+      if (!target) return;
+
+      /* Settings */
+      if (target.querySelector('[data-lucide="settings-2"]')) {
+        window.location.href = 'settings.html';
+        return;
+      }
+
+      /* Live/Sandbox toggle */
+      if (target.classList.contains('toggle')) {
+        var wrap = target.closest('.live-wrap');
+        if (wrap) {
+          wrap.classList.toggle('sandbox');
+          var dot = wrap.querySelector('.live-dot');
+          var text = wrap.querySelector('.live-text');
+          var isSandbox = wrap.classList.contains('sandbox');
+          text.textContent = isSandbox ? 'Sandbox' : 'Live mode';
+        }
+        return;
+      }
+
+      /* Notification bell */
+      if (target.classList.contains('notif-btn') || target.closest('.notif-btn')) {
+        var btn = target.closest('.notif-btn') || target;
+        var dd = btn.querySelector('.notif-dropdown');
+        if (!dd) {
+          dd = document.createElement('div');
+          dd.className = 'notif-dropdown';
+          dd.innerHTML =
+            '<div class="notif-head"><span class="notif-head-title">Notifications</span><button class="notif-head-action">Mark all read</button></div>' +
+            '<div class="notif-item"><div class="notif-item-icon green"><i data-lucide="check-circle" style="width:13px;height:13px;"></i></div><div class="notif-item-body"><div class="notif-item-text">Transaction #TXN-2847 completed successfully</div><div class="notif-item-time">2 min ago</div></div></div>' +
+            '<div class="notif-item"><div class="notif-item-icon blue"><i data-lucide="user-plus" style="width:13px;height:13px;"></i></div><div class="notif-item-body"><div class="notif-item-text">New customer registered: Amina Yusuf</div><div class="notif-item-time">15 min ago</div></div></div>' +
+            '<div class="notif-item"><div class="notif-item-icon amber"><i data-lucide="refresh-ccw" style="width:13px;height:13px;"></i></div><div class="notif-item-body"><div class="notif-item-text">Refund #RFD-033 requested by Chioma Okonkwo</div><div class="notif-item-time">1 hr ago</div></div></div>' +
+            '<div class="notif-item"><div class="notif-item-icon red"><i data-lucide="alert-triangle" style="width:13px;height:13px;"></i></div><div class="notif-item-body"><div class="notif-item-text">Dispute #DSP-012 escalated — action required</div><div class="notif-item-time">3 hrs ago</div></div></div>';
+          btn.style.position = 'relative';
+          btn.appendChild(dd);
+          if (typeof lucide !== 'undefined') lucide.createIcons();
+        }
+        e.stopPropagation();
+        dd.classList.toggle('open');
+        return;
+      }
+    });
+
+    document.addEventListener('click', function (e) {
+      document.querySelectorAll('.notif-dropdown.open').forEach(function (dd) {
+        if (!dd.closest('.notif-btn') || !dd.closest('.notif-btn').contains(e.target)) {
+          dd.classList.remove('open');
+        }
+      });
+    });
+  })();
+
   /* ── CHART TABS ── */
   document.querySelectorAll('.chart-tab').forEach(function (tab) {
     tab.addEventListener('click', function () {
