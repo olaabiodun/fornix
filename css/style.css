@@ -188,6 +188,8 @@ body {
 .live-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); box-shadow: 0 0 6px var(--green); animation: pulse 2s infinite; }
 @keyframes pulse { 0%,100%{opacity:1}50%{opacity:.4} }
 .live-text { font-size: 12px; font-weight: 600; color: var(--t2); }
+.live-wrap.sandbox .live-dot { background: var(--amber); box-shadow: 0 0 6px var(--amber); }
+.live-wrap.sandbox .live-text { color: var(--amber); }
 .toggle {
   width: 36px; height: 19px; background: var(--green); border-radius: 10px;
   position: relative; cursor: pointer;

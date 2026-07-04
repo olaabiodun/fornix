@@ -24,7 +24,7 @@
   background: var(--bg-card); border: 1px solid var(--border);
   border-radius: var(--radius); padding: 6px;
 }
-@media (max-width: 900px) { .set-side { width: 100%; position: static; display: flex; gap: 4px; padding: 4px; overflow-x: auto; } }
+@media (max-width: 900px) { .set-side { display: none; } }
 
 .set-main { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 16px; width: 100%; }
 
